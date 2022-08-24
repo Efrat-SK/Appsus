@@ -35,10 +35,10 @@ export class MailFilter extends React.Component {
     render() {
         const { txt } = this.state.filterBy
 
-        return <section className="mail-filter">
+        return <section className="mail-filter flex justify-center">
             <input
                 type="search"
-                placeholder="Email search"
+                placeholder="Email Search"
                 name="txt"
                 value={txt}
                 onChange={this.handleChange}

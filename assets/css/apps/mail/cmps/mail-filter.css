@@ -1,0 +1,16 @@
+.mail-filter {
+    padding: 5px;
+    margin: 10px;
+}
+
+.mail-filter [name="txt"] {
+    border: 0;
+    border-bottom: 1px solid #212724;
+    margin-inline-end: 20px;
+    padding: 5px;
+}
+
+.mail-filter [name="isRead"] {
+    border-radius: 20px;
+    padding: 5px;
+}

@@ -1,20 +1,15 @@
 header {
-    background: lightcyan;
-    border-bottom: 2px solid white;
+    background: whitesmoke ;
+    /* border-bottom: 2px solid whitesmoke; */
+    box-shadow: -13px 1px 0px whitesmoke;
 }
 
 .app-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 0;
+    padding: 20px;
 }
 
 nav a {
     margin: .5em;
-}
-
-nav a:active {
-    color: yellow;
 }
 
 nav a.active {

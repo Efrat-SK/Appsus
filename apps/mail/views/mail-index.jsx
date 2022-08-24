@@ -45,7 +45,7 @@ export class MailIndex extends React.Component {
         return (
             // filter
             // nav bar in the left side
-            <section className="email-app">
+            <section className="email-app main-layout">
                 <MailFilter onSetFilter={this.onSetFilter} />
                 <MailList emails={emails} />
             </section>

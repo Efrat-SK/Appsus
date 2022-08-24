@@ -2,10 +2,10 @@ export function MailPreview({ email, onSelectMail }) {
 
     const readEmailClassName = (email.isRead) ? 'read' : 'un-read'
 
-    return <tr className={`mail-preview ${readEmailClassName} flex align-center`}
+    return <tr className={`mail-preview ${readEmailClassName} flex`}
         onClick={() => onSelectMail(email.id)}>
-        <td>{email.from.fullName}</td>
-        <td>{email.subject}</td>
-        <td>{email.body}</td>
+        <td className="mail-from-name">{email.from.fullName}</td>
+        <td className="mail-subject">{email.subject}</td>
+        <td className="mail-body">{email.body}</td>
     </tr >
 }

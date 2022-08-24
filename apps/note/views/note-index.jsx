@@ -34,7 +34,7 @@ export class NoteIndex extends React.Component {
         const { notes } = this.state
         const { onEditNote, onRemoveNote } = this
         return (
-            <section>
+            <section className="note-app main-layout">
                 <EditNote onEditNote={onEditNote} />
                 <NoteList notes={notes} onRemoveNote={onRemoveNote} />
             </section>
