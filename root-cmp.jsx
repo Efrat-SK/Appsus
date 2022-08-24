@@ -9,7 +9,7 @@ const { Route, Switch } = ReactRouterDOM
 
 export function App() {
     return <Router>
-        <section className="app">
+        <section className="app main-layout">
             <AppHeader />
             <Switch>
                 <Route path="/mail" component={MailIndex} />
