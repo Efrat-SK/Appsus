@@ -2,13 +2,26 @@ export class MailFilter extends React.Component {
     state = {
         filterBy: {
             txt: '',
-            isRead: ''
-        },
+            isRead: null
+        }
     }
 
     handleChange = ({ target }) => {
         const field = target.name
-        const value = target.value
+        let value = target.value
+
+        switch (value) {
+            case 'everything':
+                value = null
+                break
+            case 'read':
+                value = true
+                break
+            case 'un-read':
+                value = false
+                break
+        }
+
         this.setState((prevState) => ({
             filterBy: {
                 ...prevState.filterBy,
@@ -18,8 +31,9 @@ export class MailFilter extends React.Component {
             this.props.onSetFilter(this.state.filterBy)
         })
     }
+
     render() {
-        const { txt, isRead } = this.state.filterBy
+        const { txt } = this.state.filterBy
 
         return <section className="mail-filter">
             <input
@@ -29,6 +43,11 @@ export class MailFilter extends React.Component {
                 value={txt}
                 onChange={this.handleChange}
             />
+            <select name="isRead" onChange={this.handleChange}>
+                <option value='everything'>Everything</option>
+                <option value='read'>Read</option>
+                <option value='un-read'>Un Read</option>
+            </select>
         </section>
     }
 }

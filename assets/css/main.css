@@ -15,13 +15,6 @@
 /* Views */
 @import './views/home.css';
 
-/* app-note */
-@import './apps/note/views/note-app.css';
-@import './apps/note/cmps/note-list.css';
-@import './apps/note/cmps/note-preview.css';
-
-/* @import './apps/mail/views/mail-app.css'; */
-
 /* Cmps */
 
 @import './cmps/user-msg.css';
@@ -29,3 +22,7 @@
 
 /* Apps */
 @import './apps/mail/cmps/mail.preview.css';
+
+/* @import './apps/note/views/note-app.css'; */
+@import './apps/note/cmps/note-list.css';
+@import './apps/note/cmps/note-preview.css';

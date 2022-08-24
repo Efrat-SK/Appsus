@@ -3,6 +3,7 @@ import { utilService } from "../../../services/util.service.js"
 
 export const mailService = {
     query,
+    getById
 }
 
 const STORAGE_KEY = 'emailsDB'
@@ -13,34 +14,50 @@ const loggedinUser = {
 }
 
 function query(criteria) {
-    console.log(criteria)
     let emails = _loadFromStorage()
     if (!emails) {
         emails = _createEmails()
         _saveToStorage(emails)
     }
 
-    if (criteria.status === 'inbox') {
+    switch (criteria.status) {
+        case 'inbox':
+            emails = emails.filter(email => (
+                email.to.email === loggedinUser.email
+            ))
+            break
+        case 'sent':
+            emails = emails.filter(email => (
+                email.to.email !== loggedinUser.email
+            ))
+    }
+
+    const txt = criteria.txt.toLowerCase()
+    const isRead = criteria.isRead
+
+    if (txt) {
         emails = emails.filter(email => (
-            email.to.email === loggedinUser.email
+            (email.subject.toLowerCase().includes(txt) ||
+                email.body.toLowerCase().includes(txt) ||
+                email.from.fullName.toLowerCase().includes(txt))
         ))
     }
 
-    if (criteria.txt) {
-        const txt = criteria.txt.toLowerCase()
-        console.log(txt)
-        console.log(emails)
-        emails = emails.filter(email => (
-            email.subject.toLowerCase().includes(txt) ||
-            email.body.toLowerCase().includes(txt)
-        ))
-        console.log(emails)
-    }
+    if (isRead !== null) emails = emails.filter(email => email.isRead == isRead)
+
     return Promise.resolve(emails)
 }
 
+function getById(mailId) {
+    if (!mailId) return Promise.resolve(null)
+    const emails = _loadFromStorage()
+    const email = emails.find(email => mailId === email.id)
+
+    return Promise.resolve(email)
+}
+
 function _loadFromStorage() {
-    storageService.loadFromStorage(STORAGE_KEY)
+    return storageService.loadFromStorage(STORAGE_KEY)
 }
 
 function _saveToStorage(data) {
