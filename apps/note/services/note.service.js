@@ -4,6 +4,7 @@ import { utilService } from "../../../services/util.service.js";
 export const noteService = {
     query,
     getById,
+    save,
 }
 
 const KEY = 'notesDB'
@@ -55,10 +56,15 @@ const gNotes = [
     //         ]
     //     }
     // }
-];
+]
 
 function query() {
-    return Promise.resolve(gNotes)
+    let notes = _loadFromStorage()
+    if (!notes) {
+        notes = gNotes
+        _saveToStorage(notes)
+    }
+    return Promise.resolve(notes)
 }
 
 function getById(noteId) {
@@ -68,6 +74,29 @@ function getById(noteId) {
     return Promise.resolve(note)
 }
 
+function save(note) {
+    // if (note.id) return _update(note)
+    return _add(note)
+}
+
+function _add(note) {
+    // let notes = _loadFromStorage()
+    // const note = _createNote(note)
+    // notes = [note, ...notes]
+    // _saveToStorage(notes)
+    // console.log(notes)
+    return Promise.resolve(note)
+}
+
+function _createNote({info, color = 'red'}) {
+    return {
+        id: utilService.makeId(),
+        type: "note-txt",
+        // isPinned: true,
+        info,
+        color,
+    }
+}
 
 function _saveToStorage(notes) {
     storageService.saveToStorage(KEY, notes)

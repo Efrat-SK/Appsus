@@ -1,3 +1,4 @@
+import { EditNote } from "../cmps/edit-note.jsx";
 import { NoteList } from "../cmps/note-list.jsx";
 import { noteService } from '../services/note.service.js';
 
@@ -21,8 +22,7 @@ export class NoteIndex extends React.Component {
         const { notes } = this.state
         return (
             <section>
-                <div>note app</div>
-                {/* <CarList cars={cars} onRemoveCar={onRemoveCar} /> */}
+                <EditNote />
                 <NoteList notes={notes} />
             </section>
         )
