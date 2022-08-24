@@ -1,0 +1,16 @@
+.mail-preview {
+    padding: 5px;
+    border: 1px solid whitesmoke;
+}
+
+.mail-preview>*:not(:last-child) {
+    margin-inline-end: 10px;
+}
+
+.read {
+    background-color: #f5f5f591;
+}
+
+.un-read {
+    background-color: white;
+}
