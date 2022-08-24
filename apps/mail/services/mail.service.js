@@ -1,7 +1,7 @@
 import { storageService } from "../../../services/storage.service.js"
 import { utilService } from "../../../services/util.service.js"
 
-export const emailService = {
+export const mailService = {
     query,
 }
 
@@ -13,20 +13,29 @@ const loggedinUser = {
 }
 
 function query(criteria) {
+    console.log(criteria)
     let emails = _loadFromStorage()
     if (!emails) {
         emails = _createEmails()
         _saveToStorage(emails)
     }
 
-    if (criteria) {
-        if (criteria.status === 'inbox') {
-            emails = emails.filter(email => (
-                email.to.email === loggedinUser.email
-            ))
-        }
+    if (criteria.status === 'inbox') {
+        emails = emails.filter(email => (
+            email.to.email === loggedinUser.email
+        ))
     }
 
+    if (criteria.txt) {
+        const txt = criteria.txt.toLowerCase()
+        console.log(txt)
+        console.log(emails)
+        emails = emails.filter(email => (
+            email.subject.toLowerCase().includes(txt) ||
+            email.body.toLowerCase().includes(txt)
+        ))
+        console.log(emails)
+    }
     return Promise.resolve(emails)
 }
 

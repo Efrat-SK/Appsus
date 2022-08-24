@@ -1,4 +1,4 @@
-export function EmailPreview({ email }) {
+export function MailPreview({ email }) {
 
     const readEmailClassName = (email.isRead) ? 'read' : 'un-read'
 

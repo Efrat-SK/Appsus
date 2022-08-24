@@ -1,5 +1,6 @@
-import { emailService } from "../services/mail.service.js"
-import { EmailList } from "../cmps/mail-list.jsx"
+import { mailService } from "../services/mail.service.js"
+import { MailFilter } from "../cmps/mail-filter.jsx"
+import { MailList } from "../cmps/mail-list.jsx"
 
 export class MailIndex extends React.Component {
 
@@ -7,7 +8,7 @@ export class MailIndex extends React.Component {
         emails: [],
         criteria: {
             status: 'inbox',
-            txt: 'puki', // no need to support complex text search
+            txt: '', // no need to support complex text search
             isRead: true, // (optional property, if missing: show all)
             isStared: true, // (optional property, if missing: show all)
             lables: ['important', 'romantic'] // has any of the labels
@@ -19,8 +20,23 @@ export class MailIndex extends React.Component {
     }
 
     loadEmails = () => {
-        emailService.query(this.state.criteria)
+        const { criteria } = this.state
+        mailService.query(criteria)
             .then((emails) => this.setState({ emails }))
+    }
+
+    onSetFilter = ({ txt, isRead }) => {
+        console.log(txt, isRead)
+        const { criteria } = this.state
+        this.setState((prevState) => ({
+            criteria: {
+                ...prevState.criteria,
+                txt: txt,
+                isRead: isRead
+            }
+        }), () => {
+            this.loadEmails()
+        })
     }
 
     render() {
@@ -29,9 +45,9 @@ export class MailIndex extends React.Component {
         return (
             // filter
             // nav bar in the left side
-            // main - inbox - compList - compPrev
             <section className="email-app">
-                <EmailList emails={emails} />
+                <MailFilter onSetFilter={this.onSetFilter} />
+                <MailList emails={emails} />
             </section>
         )
     }
