@@ -8,11 +8,12 @@ export class MailIndex extends React.Component {
         emails: [],
         criteria: {
             status: 'inbox',
-            txt: '', // no need to support complex text search
-            isRead: true, // (optional property, if missing: show all)
+            txt: '',
+            isRead: null,
             isStared: true, // (optional property, if missing: show all)
             lables: ['important', 'romantic'] // has any of the labels
-        }
+        },
+        selectedMail: null
     }
 
     componentDidMount() {
@@ -26,8 +27,7 @@ export class MailIndex extends React.Component {
     }
 
     onSetFilter = ({ txt, isRead }) => {
-        console.log(txt, isRead)
-        const { criteria } = this.state
+
         this.setState((prevState) => ({
             criteria: {
                 ...prevState.criteria,

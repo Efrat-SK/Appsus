@@ -1,11 +1,30 @@
+import { mailService } from "../services/mail.service.js"
+import { MailDetails } from "./mail-details.jsx"
 import { MailPreview } from "./mail-preview.jsx"
 
-export function MailList({ emails }) {
+export class MailList extends React.Component {
 
-    return <table className="email-list">
-        <tbody>
-            {emails.map(email =>
-                <MailPreview key={email.id} email={email} />)}
-        </tbody>
-    </table>
+    state = {
+        selectedMail: null
+    }
+
+    onSelectMail = (mailId) => {
+        mailService.getById(mailId)
+            .then(email => this.setState({ selectedMail: email }))
+    }
+
+    render() {
+        const { emails } = this.props
+        const { selectedMail } = this.state
+
+        return <section>
+            {!selectedMail && <table className="email-list">
+                <tbody>
+                    {emails.map(email =>
+                        <MailPreview key={email.id} email={email} onSelectMail={this.onSelectMail} />)}
+                </tbody>
+            </table>}
+            {selectedMail && <MailDetails email={selectedMail} />}
+        </section>
+    }
 }
