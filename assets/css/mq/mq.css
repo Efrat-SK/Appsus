@@ -1,0 +1,23 @@
+/* mobile only */
+@media (max-width: 900px) {}
+
+/* Mobile */
+@media (min-width: 540px) {
+    .main-layout>*:not(.full) {
+        max-width: var(--small);
+    }
+}
+
+/* Tablet */
+@media (min-width: 900px) {
+    .main-layout>*:not(.full) {
+        max-width: var(--medium);
+    }
+}
+
+/* Desktop */
+@media (min-width: 1020px) {
+    .main-layout>*:not(.full) {
+        max-width: var(--large);
+    }
+}
