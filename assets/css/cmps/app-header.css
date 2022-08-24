@@ -14,7 +14,7 @@ nav a {
 }
 
 nav a:active {
-    color: purple;
+    color: yellow;
 }
 
 nav a.active {
