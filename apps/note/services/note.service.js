@@ -5,6 +5,7 @@ export const noteService = {
     query,
     getById,
     save,
+    remove,
 }
 
 const KEY = 'notesDB'
@@ -75,26 +76,31 @@ function getById(noteId) {
 }
 
 function save(note) {
-    // if (note.id) return _update(note)
     return _add(note)
 }
 
-function _add(note) {
-    // let notes = _loadFromStorage()
-    // const note = _createNote(note)
-    // notes = [note, ...notes]
-    // _saveToStorage(notes)
-    // console.log(notes)
+function remove(noteId) {
+    let notes = _loadFromStorage()
+    notes = notes.filter(note => note.id !== noteId)
+    _saveToStorage(notes)
+    return Promise.resolve()
+}
+
+function _add({ info }) {
+    let notes = _loadFromStorage()
+    const note = _createNote({ info })
+    notes = [note, ...notes]
+    _saveToStorage(notes)
     return Promise.resolve(note)
 }
 
-function _createNote({info, color = 'red'}) {
+function _createNote({ info }) {
+    const infoValue = { txt: info }
     return {
         id: utilService.makeId(),
         type: "note-txt",
         // isPinned: true,
-        info,
-        color,
+        info: infoValue
     }
 }
 

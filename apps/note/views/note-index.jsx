@@ -8,22 +8,35 @@ export class NoteIndex extends React.Component {
         notes: [],
         filterBy: null
     }
-    
+
     componentDidMount() {
         this.loadNotes()
     }
 
     loadNotes = () => {
+        { console.log('load notes') }
         noteService.query()
-            .then(notes => this.setState( {notes} ))
+            .then(notes => this.setState({ notes }))
+    }
+
+    onEditNote = () => {
+        this.setState(this.loadNotes)
+    }
+
+    onRemoveNote = (noteId) => {
+        noteService.remove(noteId)
+            .then(() => {
+                this.setState(this.loadNotes)
+            })
     }
 
     render() {
         const { notes } = this.state
+        const { onEditNote, onRemoveNote } = this
         return (
             <section>
-                <EditNote />
-                <NoteList notes={notes} />
+                <EditNote onEditNote={onEditNote} />
+                <NoteList notes={notes} onRemoveNote={onRemoveNote} />
             </section>
         )
     }
