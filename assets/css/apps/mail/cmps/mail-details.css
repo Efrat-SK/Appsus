@@ -1,0 +1,26 @@
+.mail-details {
+    min-height: 70vh;
+}
+
+.mail-details .btn-back {
+    align-self: flex-start;
+    margin-bottom: 20px;
+}
+
+.mail-details .subject {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.mail-details .from-fullName {
+    margin-inline-end: 20px;
+    font-weight: bold;
+}
+
+.mail-details .to-fullName {
+    margin-bottom: 30px;
+}
+
+.mail-details .body {
+    min-height: 50vh;
+}

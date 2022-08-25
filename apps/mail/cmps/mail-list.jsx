@@ -13,6 +13,10 @@ export class MailList extends React.Component {
             .then(email => this.setState({ selectedMail: email }))
     }
 
+    onResetMail = () => {
+        this.setState({ selectedMail: null })
+    }
+
     render() {
         const { emails, status } = this.props
         const { selectedMail } = this.state
@@ -24,7 +28,7 @@ export class MailList extends React.Component {
                         <MailPreview key={email.id} email={email} status={status} onSelectMail={this.onSelectMail} />)}
                 </tbody>
             </table>}
-            {selectedMail && <MailDetails email={selectedMail} />}
+            {selectedMail && <MailDetails email={selectedMail} onResetMail={this.onResetMail} />}
         </section>
     }
 }

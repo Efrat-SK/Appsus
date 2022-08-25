@@ -15,7 +15,6 @@ export class MailIndex extends React.Component {
             isStared: true,
             lables: ['important', 'romantic']
         },
-        selectedMail: null,
         isCompose: false
     }
 
