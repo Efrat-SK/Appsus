@@ -6,3 +6,10 @@
     margin: 5px;
     border-radius: 5px;
 }
+
+.note-list {
+    /* display: block; */
+    column-count: 3;
+    align-content: flex-start;
+    gap: 7px;
+}

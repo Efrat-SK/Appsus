@@ -4,8 +4,9 @@ export class EditNote extends React.Component {
 
     state = {
         note: {
-            info: {},
-        }
+                info:' ',
+            },
+        
     }
 
     handleChange = ({ target }) => {
@@ -14,17 +15,22 @@ export class EditNote extends React.Component {
         this.setState(({ note }) => ({
             note: { ...note, [field]: value }
         }))
+        //this.setState((prevState)=>(...prevState,note:{...prevState.note,[field]:value}))
     }
 
     onSaveNote = (ev) => {
         ev.preventDefault()
         noteService.save(this.state.note)
-        this.props.onEditNote()
+        this.setState({ note:  {info:''}  }, () => {
+            console.log('hello',this.state);
+            this.props.onEditNote()
+        })
     }
 
 
     render() {
-        const { info } = this.state.note.info
+        console.log('renders')
+        const { info } = this.state.note
         const { onSaveNote, handleChange } = this
         return <section className="note-edit">
             < form className="flex column align-center" onSubmit={onSaveNote} >

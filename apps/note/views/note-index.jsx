@@ -20,7 +20,7 @@ export class NoteIndex extends React.Component {
     }
 
     onEditNote = () => {
-        this.setState(this.loadNotes)
+        this.loadNotes()
     }
 
     onRemoveNote = (noteId) => {
