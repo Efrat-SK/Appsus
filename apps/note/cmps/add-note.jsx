@@ -3,8 +3,8 @@ export class AddNote extends React.Component {
 
     state = {
         note: {
-            info: ' ',
-        },
+            info: '',
+        }
 
     }
 

@@ -10,7 +10,7 @@ export function AppHeader() {
             <NavLink to="/note">Note</NavLink>
             <NavLink to="/book">Book</NavLink>
             <NavLink to="/about">About</NavLink>
-            <NavLink to="/">Home</NavLink>
+            <NavLink exact to="/">Home</NavLink>
         </nav>
     </header>
 }

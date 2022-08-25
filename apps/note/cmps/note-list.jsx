@@ -4,7 +4,7 @@ import { NotePreview } from "./note-preview.jsx";
 export function NoteList({ notes, onRemoveNote ,onEditNote }) {
 
     return <section className="note-list">
-        <ul className="clean-list">
+        <ul className="clean-list grid">
             {
                 notes.map(note =>
                     <li className="note-preview" key={note.id}>

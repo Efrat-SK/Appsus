@@ -87,11 +87,12 @@ function save({ info }) {
 }
 
 function update(noteToUpdate , newText) {
+    let updatedNote = _updateNote(noteToUpdate , newText)
     let notes = _loadFromStorage()
-    notes = notes.map(note => note.id === noteToUpdate.id ? noteToUpdate : note)
+    notes = notes.map(note => note.id === noteToUpdate.id ? updatedNote : note)
     _saveToStorage(notes)
     console.log('notes: ', notes)
-    return Promise.resolve(noteToUpdate)
+    return Promise.resolve(updatedNote)
 }
 
 function remove(noteId) {
@@ -111,15 +112,15 @@ function _createNote(info) {
     }
 }
 
-// function _createNote(info) {
-//     const infoValue = { txt: info }
-//     return {
-//         id: utilService.makeId(),
-//         type: "note-txt",
-//         // isPinned: true,
-//         info: infoValue
-//     }
-// }
+function _updateNote(note, newText) {
+    const infoValue = { txt: newText }
+    return {
+        id: note.id,
+        type: "note-txt",
+        // isPinned: true,
+        info: infoValue
+    }
+}
 
 function _saveToStorage(notes) {
     storageService.saveToStorage(KEY, notes)
