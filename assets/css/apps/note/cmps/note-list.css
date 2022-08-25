@@ -5,11 +5,11 @@
     padding: 8px;
     margin: 5px;
     border-radius: 5px;
+    break-inside: avoid;
 }
 
 .note-list {
     /* display: block; */
-    column-count: 3;
-    align-content: flex-start;
+    column-count: 4;
     gap: 7px;
 }

@@ -1,12 +1,11 @@
-import { noteService } from "../services/note.service.js"
 
-export class EditNote extends React.Component {
+export class AddNote extends React.Component {
 
     state = {
         note: {
-                info:' ',
-            },
-        
+            info: ' ',
+        },
+
     }
 
     handleChange = ({ target }) => {
@@ -18,22 +17,21 @@ export class EditNote extends React.Component {
         //this.setState((prevState)=>(...prevState,note:{...prevState.note,[field]:value}))
     }
 
-    onSaveNote = (ev) => {
-        ev.preventDefault()
-        noteService.save(this.state.note)
-        this.setState({ note:  {info:''}  }, () => {
-            console.log('hello',this.state);
-            this.props.onEditNote()
+    addNote = (ev) => {
+        const { note } = this.state
+        this.setState({ note: { info: '' } }, () => {
+            this.props.onAddNote(ev, note)
         })
     }
-
 
     render() {
         console.log('renders')
         const { info } = this.state.note
-        const { onSaveNote, handleChange } = this
+        // const { note } = this.state
+        const { handleChange } = this
+        const { onAddNote } = this.props
         return <section className="note-edit">
-            < form className="flex column align-center" onSubmit={onSaveNote} >
+            < form className="flex column align-center" onSubmit={this.addNote} >
 
                 <input type="text" name="info"
                     value={info} id="info"

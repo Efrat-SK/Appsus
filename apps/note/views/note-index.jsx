@@ -1,4 +1,4 @@
-import { EditNote } from "../cmps/edit-note.jsx";
+import { AddNote } from "../cmps/add-note.jsx";
 import { NoteList } from "../cmps/note-list.jsx";
 import { noteService } from '../services/note.service.js';
 
@@ -19,8 +19,18 @@ export class NoteIndex extends React.Component {
             .then(notes => this.setState({ notes }))
     }
 
-    onEditNote = () => {
-        this.loadNotes()
+    onEditNote = (ev, note) => {
+        console.log(ev)
+        // console.log(note)
+        // console.log(note.id)
+        console.log(note.info)
+
+        const updatedNote = { ...note, txt: ev.target.innerText }
+        console.log('updatedNote', updatedNote)
+        noteService.update(note , ev.target.innerText)
+            .then(() => {
+                this.setState(this.loadNotes)
+            })
     }
 
     onRemoveNote = (noteId) => {
@@ -28,15 +38,23 @@ export class NoteIndex extends React.Component {
             .then(() => {
                 this.setState(this.loadNotes)
             })
+        console.log('note was removed')
+    }
+
+    onAddNote = (ev, note) => {
+        ev.preventDefault()
+        noteService.save(note)
+        this.loadNotes()
+        console.log('note was saved')
     }
 
     render() {
         const { notes } = this.state
-        const { onEditNote, onRemoveNote } = this
+        const { onRemoveNote, onAddNote, onEditNote } = this
         return (
             <section className="note-app main-layout">
-                <EditNote onEditNote={onEditNote} />
-                <NoteList notes={notes} onRemoveNote={onRemoveNote} />
+                <AddNote onEditNote={onEditNote} onAddNote={onAddNote} />
+                <NoteList notes={notes} onRemoveNote={onRemoveNote} onEditNote={onEditNote} />
             </section>
         )
     }

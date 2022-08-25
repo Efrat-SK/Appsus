@@ -6,6 +6,7 @@ export const noteService = {
     getById,
     save,
     remove,
+    update,
 }
 
 const KEY = 'notesDB'
@@ -75,8 +76,22 @@ function getById(noteId) {
     return Promise.resolve(note)
 }
 
-function save(note) {
-    return _add(note)
+function save({ info }) {
+    console.log('info: ', info)
+    let notes = _loadFromStorage()
+    const newNote = _createNote(info)
+    notes = [newNote, ...notes]
+    console.log('notes: ', notes)
+    _saveToStorage(notes)
+    return Promise.resolve(newNote)
+}
+
+function update(noteToUpdate , newText) {
+    let notes = _loadFromStorage()
+    notes = notes.map(note => note.id === noteToUpdate.id ? noteToUpdate : note)
+    _saveToStorage(notes)
+    console.log('notes: ', notes)
+    return Promise.resolve(noteToUpdate)
 }
 
 function remove(noteId) {
@@ -86,15 +101,7 @@ function remove(noteId) {
     return Promise.resolve()
 }
 
-function _add({ info }) {
-    let notes = _loadFromStorage()
-    const note = _createNote({ info })
-    notes = [note, ...notes]
-    _saveToStorage(notes)
-    return Promise.resolve(note)
-}
-
-function _createNote({ info }) {
+function _createNote(info) {
     const infoValue = { txt: info }
     return {
         id: utilService.makeId(),
@@ -103,6 +110,16 @@ function _createNote({ info }) {
         info: infoValue
     }
 }
+
+// function _createNote(info) {
+//     const infoValue = { txt: info }
+//     return {
+//         id: utilService.makeId(),
+//         type: "note-txt",
+//         // isPinned: true,
+//         info: infoValue
+//     }
+// }
 
 function _saveToStorage(notes) {
     storageService.saveToStorage(KEY, notes)
