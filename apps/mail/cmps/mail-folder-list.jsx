@@ -1,3 +1,5 @@
+import { mailService } from "../services/mail.service.js"
+
 const { Link, NavLink, withRouter } = ReactRouterDOM
 
 class _MailFolderList extends React.Component {
@@ -17,6 +19,8 @@ class _MailFolderList extends React.Component {
     }
 
     render() {
+        const unReadMailsCounter =  mailService.unReadMailsCounter()
+
         return <section className="mail-folder-list flex column">
             <Link to={`/mail/${this.props.match.params.status}/compose`}>
                 <button className="btn-compose"
@@ -29,7 +33,7 @@ class _MailFolderList extends React.Component {
                     <li className="inbox"
                         name="inbox"
                         onClick={this.setStatus}>
-                        Inbox
+                        Inbox <span className="counter">{unReadMailsCounter}</span>
                     </li>
                 </NavLink>
                 <NavLink to="/mail/star">
