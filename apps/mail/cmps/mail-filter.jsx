@@ -11,7 +11,7 @@ export class MailFilter extends React.Component {
         let value = target.value
 
         switch (value) {
-            case 'everything':
+            case 'all':
                 value = null
                 break
             case 'read':
@@ -44,7 +44,7 @@ export class MailFilter extends React.Component {
                 onChange={this.handleChange}
             />
             <select name="isRead" onChange={this.handleChange}>
-                <option value='everything'>Everything</option>
+                <option value='all'>All</option>
                 <option value='read'>Read</option>
                 <option value='un-read'>Un Read</option>
             </select>

@@ -1,0 +1,37 @@
+.book-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.43);
+    cursor: pointer;
+    position: relative;
+    background-color: lightblue;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.book-preview .sale-img {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    margin: 10px;
+    top: 0;
+    right: 0;
+}
+
+.book-preview .img-container img {
+    height: 200px;
+}
+
+.book-preview .green {
+    color: green;
+}
+
+.book-preview .red {
+    color: red;
+}

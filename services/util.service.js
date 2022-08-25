@@ -6,6 +6,7 @@ export const utilService = {
     padNum,
     getDayName,
     getMonthName,
+    getCurrencySymbol
 }
 
 function makeId(length = 6) {
@@ -59,4 +60,14 @@ function getMonthName(date) {
         "July", "August", "September", "October", "November", "December"
     ]
     return monthNames[date.getMonth()]
+}
+
+function getCurrencySymbol(price, currency, lang) {
+    const opt = {
+        style: 'currency',
+        currency: currency,
+    }
+
+    var currPrice = new Intl.NumberFormat(lang, opt).format(price);
+    return currPrice;
 }

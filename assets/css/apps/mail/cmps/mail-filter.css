@@ -6,11 +6,11 @@
 .mail-filter [name="txt"] {
     border: 0;
     border-bottom: 1px solid #212724;
-    margin-inline-end: 20px;
+    margin-inline-end: 5px;
     padding: 5px;
 }
 
 .mail-filter [name="isRead"] {
-    border-radius: 20px;
+    border: 0;
     padding: 5px;
 }

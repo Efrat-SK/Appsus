@@ -8,7 +8,8 @@
     margin-inline-end: 10px;
 }
 
-.mail-preview .mail-from-name {
+.mail-preview .mail-from-name,
+.mail-preview .mail-to-name {
     min-width: 130px;
 }
 

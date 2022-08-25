@@ -17,6 +17,8 @@
 @media (min-width: 900px) {
     .main-layout>*:not(.full) {
         max-width: var(--medium);
+        margin-right: 20px;
+        margin-left: 20px;
     }
 
     .mail-preview {

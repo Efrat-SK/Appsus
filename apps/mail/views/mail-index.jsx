@@ -1,6 +1,7 @@
 import { mailService } from "../services/mail.service.js"
 import { MailFilter } from "../cmps/mail-filter.jsx"
 import { MailList } from "../cmps/mail-list.jsx"
+import { MailFolderList } from "../cmps/mail-folder-list.jsx"
 
 export class MailIndex extends React.Component {
 
@@ -10,8 +11,8 @@ export class MailIndex extends React.Component {
             status: 'inbox',
             txt: '',
             isRead: null,
-            isStared: true, // (optional property, if missing: show all)
-            lables: ['important', 'romantic'] // has any of the labels
+            isStared: true,
+            lables: ['important', 'romantic']
         },
         selectedMail: null
     }
@@ -39,15 +40,28 @@ export class MailIndex extends React.Component {
         })
     }
 
+    onSetStatus = (status) => {
+        this.setState((prevState) => ({
+            criteria: {
+                ...prevState.criteria,
+                status: status
+            }
+        }), () => {
+            console.log(this.state)
+            this.loadEmails()
+        })
+    }
+
     render() {
         const { emails } = this.state
+        const { status } = this.state.criteria
 
         return (
-            // filter
-            // nav bar in the left side
             <section className="email-app main-layout">
                 <MailFilter onSetFilter={this.onSetFilter} />
-                <MailList emails={emails} />
+                <div className="flex">
+                    <MailFolderList onSetStatus={this.onSetStatus} />
+                    <MailList emails={emails} status={status}/></div>
             </section>
         )
     }

@@ -1,0 +1,31 @@
+.mail-folder-list {
+    margin-inline-end: 1vw;
+}
+
+.mail-folder-list .btn-compose {
+    max-width: 110px;
+    align-self: center;
+    font-size: 1rem;
+}
+
+.mail-folder-list>*:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.mail-folder-list ul>li {
+    cursor: pointer;
+    min-width: 15vw;
+    padding: 3px;
+    /* padding-inline-start: 15px; */
+}
+
+.mail-folder-list ul>li:hover {
+    background-color: #ffe1e5;
+    color: red;
+    font-weight: bold;
+    border-radius: 0 20px 20px 0;
+}
+
+.mail-folder-list ul>li:not(:last-child) {
+    margin-bottom: 10px;
+}

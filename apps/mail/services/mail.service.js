@@ -30,6 +30,7 @@ function query(criteria) {
             emails = emails.filter(email => (
                 email.to.email !== loggedinUser.email
             ))
+            break
     }
 
     const txt = criteria.txt.toLowerCase()

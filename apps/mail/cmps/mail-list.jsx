@@ -14,14 +14,14 @@ export class MailList extends React.Component {
     }
 
     render() {
-        const { emails } = this.props
+        const { emails, status } = this.props
         const { selectedMail } = this.state
 
         return <section>
             {!selectedMail && <table className="email-list">
                 <tbody>
                     {emails.map(email =>
-                        <MailPreview key={email.id} email={email} onSelectMail={this.onSelectMail} />)}
+                        <MailPreview key={email.id} email={email} status={status} onSelectMail={this.onSelectMail} />)}
                 </tbody>
             </table>}
             {selectedMail && <MailDetails email={selectedMail} />}
