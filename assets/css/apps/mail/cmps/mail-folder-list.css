@@ -12,20 +12,16 @@
     margin-bottom: 20px;
 }
 
-.mail-folder-list ul>li {
+.mail-folder-list ul a li {
     cursor: pointer;
     min-width: 15vw;
     padding: 3px;
-    /* padding-inline-start: 15px; */
+    margin-bottom: 10px;
 }
 
-.mail-folder-list ul>li:hover {
+.mail-folder-list .active li {
     background-color: #ffe1e5;
     color: red;
     font-weight: bold;
     border-radius: 0 20px 20px 0;
-}
-
-.mail-folder-list ul>li:not(:last-child) {
-    margin-bottom: 10px;
 }

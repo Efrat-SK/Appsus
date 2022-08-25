@@ -16,7 +16,7 @@ export function App() {
             <Switch>
                 <Route path="/book/:bookId" component={BookDetails} />
                 <Route path="/book" component={BookIndex} />
-                <Route path="/mail" component={MailIndex} />
+                <Route path="/mail/:status?/:compose?" component={MailIndex} />
                 <Route path="/note" component={NoteIndex} />
                 <Route path="/about" component={About} />
                 <Route path="/" component={Home} />

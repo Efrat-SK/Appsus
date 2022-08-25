@@ -3,7 +3,8 @@ import { utilService } from "../../../services/util.service.js"
 
 export const mailService = {
     query,
-    getById
+    getById,
+    save
 }
 
 const STORAGE_KEY = 'emailsDB'
@@ -55,6 +56,18 @@ function getById(mailId) {
     const email = emails.find(email => mailId === email.id)
 
     return Promise.resolve(email)
+}
+
+function save(mail) {
+    return _add(mail)
+}
+
+function _add({ to, subject, body }) {
+    let emails = _loadFromStorage()
+    const mail = _createEmail(to, subject, body)
+    emails = [mail, ...emails]
+    _saveToStorage(emails)
+    return Promise.resolve(mail)
 }
 
 function _loadFromStorage() {
@@ -161,7 +174,7 @@ function _createEmails() {
             id: utilService.makeId(),
             subject: 'some updates',
             body: 'Hi, just so you know. I updated the system so that everything is working again, let me know if there are any more problems, have a good day',
-            isRead: false,
+            isRead: true,
             sentAt: Date.now(),
             from: {
                 fullName: 'Mahatma Appsus',
@@ -309,4 +322,23 @@ function _createEmails() {
         },
     ]
     return emails
+}
+
+//compose
+function _createEmail(to, subject, body) {
+    return {
+        id: utilService.makeId(),
+        subject: subject,
+        body: body,
+        isRead: true,
+        sentAt: Date.now(),
+        from: {
+            fullName: loggedinUser.fullName,
+            email: loggedinUser.email
+        },
+        to: {
+            fullName: to.split('@')[0],
+            email: to
+        }
+    }
 }

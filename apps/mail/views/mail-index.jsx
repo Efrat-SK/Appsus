@@ -2,6 +2,7 @@ import { mailService } from "../services/mail.service.js"
 import { MailFilter } from "../cmps/mail-filter.jsx"
 import { MailList } from "../cmps/mail-list.jsx"
 import { MailFolderList } from "../cmps/mail-folder-list.jsx"
+import { MailCompose } from "../cmps/mail-compose.jsx"
 
 export class MailIndex extends React.Component {
 
@@ -14,11 +15,13 @@ export class MailIndex extends React.Component {
             isStared: true,
             lables: ['important', 'romantic']
         },
-        selectedMail: null
+        selectedMail: null,
+        isCompose: false
     }
 
     componentDidMount() {
         this.loadEmails()
+        this.props.history.push('/mail/inbox')
     }
 
     loadEmails = () => {
@@ -47,21 +50,39 @@ export class MailIndex extends React.Component {
                 status: status
             }
         }), () => {
-            console.log(this.state)
             this.loadEmails()
         })
     }
 
+    saveMail = (mail, status) => {
+        console.log(status)
+        mailService.save(mail)
+            .then(() => {
+                this.isCompose(false)
+                this.props.history.push(`/mail/${status}`)
+            })
+    }
+
+    isCompose = (isCompose) => {
+        this.setState({ isCompose: isCompose })
+    }
+
+    removeCompose = (status) => {
+        this.isCompose(false)
+        this.props.history.push(`/mail/${status}`)
+    }
+
     render() {
-        const { emails } = this.state
+        const { emails, isCompose } = this.state
         const { status } = this.state.criteria
 
         return (
-            <section className="email-app main-layout">
+            <section className="mail-app main-layout">
                 <MailFilter onSetFilter={this.onSetFilter} />
                 <div className="flex">
-                    <MailFolderList onSetStatus={this.onSetStatus} />
-                    <MailList emails={emails} status={status}/></div>
+                    <MailFolderList onSetStatus={this.onSetStatus} isCompose={this.isCompose} />
+                    <MailList emails={emails} status={status} /></div>
+                {isCompose && <MailCompose saveMail={this.saveMail} removeCompose={this.removeCompose} />}
             </section>
         )
     }

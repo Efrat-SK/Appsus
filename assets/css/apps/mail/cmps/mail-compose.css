@@ -1,0 +1,64 @@
+.mail-compose {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    min-height: 60vh;
+    min-width: 60vw;
+    background-color: white;
+    box-shadow: 0px 4px 8px 3px whitesmoke;
+}
+
+.mail-compose h4 {
+    background-color: #212724;
+    color: white;
+    padding: 10px;
+}
+
+.mail-compose label {
+    width: 100%;
+    padding: 5px;
+}
+
+.mail-compose [name="to"] {
+    border: 0;
+    outline: none;
+    border-bottom: 1px solid whitesmoke;
+    width: 94%;
+    padding: 5px;
+}
+
+.mail-compose [name="subject"] {
+    border: 0;
+    outline: none;
+    border-bottom: 1px solid whitesmoke;
+    width: 89%;
+    padding: 5px;
+}
+
+.mail-compose [name="body"] {
+    border: 0;
+    outline: none;
+    height: 300px;
+    padding: 5px;
+}
+
+.mail-compose [name="to"]:active,
+.mail-compose [name="subject"]:active,
+.mail-compose [name="body"] {
+    border: 0;
+    outline: none;
+}
+
+.send,
+.remove {
+    position: absolute;
+    bottom: 10px;
+}
+
+.send {
+    left: 10px;
+}
+
+.remove {
+    right: 10px;
+}
