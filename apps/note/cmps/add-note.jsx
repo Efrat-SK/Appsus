@@ -30,17 +30,14 @@ export class AddNote extends React.Component {
         // const { note } = this.state
         const { handleChange } = this
         const { onAddNote } = this.props
-        return <section className="note-edit">
+        return <section className="note-add">
             < form className="flex column align-center" onSubmit={this.addNote} >
-
                 <input type="text" name="info"
                     value={info} id="info"
                     placeholder="Add your new note"
                     onChange={handleChange}
                 />
-
             </form >
         </section >
-
     }
 }

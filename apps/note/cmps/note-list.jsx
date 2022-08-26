@@ -7,9 +7,12 @@ export function NoteList({ notes, onRemoveNote ,onEditNote }) {
         <ul className="clean-list grid">
             {
                 notes.map(note =>
-                    <li className="note-preview" key={note.id}>
+                    <li className="note-preview flex column" key={note.id}>
                         <NotePreview note={note} onEditNote={onEditNote}/>
+                        <div className="devTools flex">
                         <button onClick={() => onRemoveNote(note.id)}>X</button>
+                        <button onClick={() => onRemoveNote(note.id)}>X</button>
+                        </div>
                     </li>)
             }
         </ul>

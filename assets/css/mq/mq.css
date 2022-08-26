@@ -1,7 +1,17 @@
 /* mobile only  */
 @media (max-width: 900px) {
-    .mail-preview {
-        flex-direction: column;
+    .main-layout>*:not(.full) {
+        width: 100%;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+    
+    .note-list {
+        column-count: 1;
+    }
+
+    .note-preview{
+        width: 80vw;
     }
 }
 
@@ -9,21 +19,36 @@
 @media (min-width: 540px) {
     .main-layout>*:not(.full) {
         max-width: var(--small);
-        margin: auto
+        margin: auto;
+        padding: 10px;
+    }
+
+    .note-list {
+        column-count: 2;
+    }
+
+    .note-preview{
+        width: 40vw;
     }
 }
 
 /* Tablet */
-@media (min-width: 900px) {
+@media (min-width: 820px) {
     .main-layout>*:not(.full) {
         max-width: var(--medium);
-        margin-right: 20px;
-        margin-left: 20px;
     }
 
     .mail-preview {
         flex-direction: row;
         align-items: center;
+    }
+
+    .note-list {
+        column-count: 3;
+    }
+
+    .note-preview{
+        width: 210px;
     }
 }
 
@@ -31,5 +56,13 @@
 @media (min-width: 1020px) {
     .main-layout>*:not(.full) {
         max-width: var(--large);
+    }
+
+    .note-list {
+        column-count: 4;
+    }
+
+    .note-preview{
+        width: 200px;
     }
 }

@@ -1,15 +1,42 @@
-.note-preview{
-    height: 150px;
-    width: 200px;
-    background-color: aqua;
-    padding: 8px;
-    margin: 5px;
-    border-radius: 5px;
+.note-preview {
     break-inside: avoid;
+    min-height: 100px;
+    padding: 12px;
+    margin: 5px;
+
+    /* justify-content: flex-start; */
+    align-items: flex-start;
+    justify-content: space-between;
+
+    background-color: rgb(184, 184, 184);
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+
+    transition: all 1s;
+}
+
+.note-preview:hover .devTools {
+    display: block;
+    transition: all 1s;
 }
 
 .note-list {
-    /* display: block; */
-    column-count: 4;
     gap: 7px;
+    transition: all 1s;
+}
+
+.devTools {
+    display: none;
+    align-self: flex-end;
+    transition: all 1s;
+
+}
+
+.devTools>* {
+    margin-left: 8px;
+}
+
+.devTools>button {
+    width: 30px;
+    height: 30px;
 }

@@ -1,3 +1,0 @@
-.main-layout>*:not(.full) {
-    max-width: var(--large);
-}

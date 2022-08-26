@@ -52,10 +52,10 @@ export class NoteIndex extends React.Component {
         const { notes } = this.state
         const { onRemoveNote, onAddNote, onEditNote } = this
         return (
-            <section className="note-app main-layout">
+            <main className="note-app main-layout flex column align-center">
                 <AddNote onEditNote={onEditNote} onAddNote={onAddNote} />
                 <NoteList notes={notes} onRemoveNote={onRemoveNote} onEditNote={onEditNote} />
-            </section>
+            </main>
         )
     }
 }
