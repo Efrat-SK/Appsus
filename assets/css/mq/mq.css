@@ -71,6 +71,10 @@
         padding: 20px;
     }
 
+    .mail-preview {
+        flex-direction: column;
+    }
+
     .mail-compose {
         bottom: 0;
         right: 0;

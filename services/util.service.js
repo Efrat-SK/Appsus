@@ -6,7 +6,8 @@ export const utilService = {
     padNum,
     getDayName,
     getMonthName,
-    getCurrencySymbol
+    getCurrencySymbol,
+    getDate
 }
 
 function makeId(length = 6) {
@@ -59,7 +60,7 @@ function getMonthName(date) {
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ]
-    return monthNames[date.getMonth()]
+    return monthNames[date]
 }
 
 function getCurrencySymbol(price, currency, lang) {
@@ -70,4 +71,15 @@ function getCurrencySymbol(price, currency, lang) {
 
     var currPrice = new Intl.NumberFormat(lang, opt).format(price);
     return currPrice;
+}
+
+function getDate(date) {
+    const currentdate = new Date(date);
+
+    const datetime = [currentdate.getDate(),
+    (currentdate.getMonth() + 1),
+    currentdate.getFullYear()]
+
+    console.log(datetime)
+    return datetime;
 }
