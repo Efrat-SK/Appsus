@@ -2,7 +2,7 @@
     break-inside: avoid;
     min-height: 100px;
     padding: 12px;
-    margin: 5px;
+    margin-bottom: 7px;
 
     /* justify-content: flex-start; */
     align-items: flex-start;
@@ -21,7 +21,8 @@
 }
 
 .note-list {
-    gap: 7px;
+    gap: 10px;
+    column-fill: balance;
     transition: all 1s;
 }
 

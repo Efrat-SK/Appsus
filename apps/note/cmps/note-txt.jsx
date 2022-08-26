@@ -1,5 +1,5 @@
 
-export function NotePreview({ note ,onEditNote}) {
+export function NoteTxt({ note ,onEditNote}) {
 
     return <article className="note-info" >
         <h1 contentEditable="true" suppressContentEditableWarning={true}
