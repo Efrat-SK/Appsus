@@ -14,3 +14,24 @@ nav a.active {
     color: darkblue;
     font-weight: bold;
 }
+
+.btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: 0;
+    padding: 30px;
+    box-shadow: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.toggle-menu {
+    display: none;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 5px;
+}

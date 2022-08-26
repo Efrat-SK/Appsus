@@ -5,6 +5,29 @@
         margin-left: 5px;
     }
 
+    .app-header nav {
+        position: fixed;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        top: 0;
+        right: 0;
+        background-color: var(--color6);
+        min-height: 100vh;
+        min-width: 100vw;
+        transition: transform .6s, box-shadow .6s;
+        transform: translateX(100%);
+        background-color: whitesmoke;
+    }
+
+    .app-header.menu-opened nav {
+        transform: translateX(0);
+    }
+
+    .app-header .toggle-menu {
+        display: unset;
+    }
+
     .home .img-container {
         align-items: center;
     }
@@ -12,6 +35,7 @@
     .about .team-members {
         flex-direction: column;
     }
+
 
     .note-list {
         column-count: 1;
@@ -30,6 +54,11 @@
         padding: 10px;
     }
 
+    .home .img-container img {
+        height: 100px;
+        width: 100px;
+    }
+
     .note-list {
         column-count: 2;
     }
@@ -38,10 +67,6 @@
         width: 40vw;
     }
 
-    .home .img-container img {
-        height: 100px;
-        width: 100px;
-    }
 }
 
 /* Tablet */
@@ -50,8 +75,17 @@
         max-width: var(--medium);
     }
 
+    html {
+        font-size: 14px;
+    }
+
     .home .img-container {
         flex-direction: row;
+    }
+
+    .app-header .btn-close,
+    .app-header .separate-line {
+        display: none;
     }
 
     .mail-preview {
@@ -72,6 +106,10 @@
 @media (min-width: 1020px) {
     .main-layout>*:not(.full) {
         max-width: var(--large);
+    }
+
+    html {
+        font-size: 16px;
     }
 
     .note-list {
