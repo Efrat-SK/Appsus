@@ -1,0 +1,22 @@
+.about {
+    font-family: roboto-italic, sans-serif;
+}
+
+.about h2 {
+    font-family: roboto-thin, sans-serif;
+}
+
+.about p {
+    font-size: 1.1rem;
+}
+
+.about .team-members {
+    margin: 10px;
+}
+
+.team-members .team-member img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    margin: 10px;
+}
