@@ -12,7 +12,6 @@
         align-items: center;
         top: 0;
         right: 0;
-        background-color: var(--color6);
         min-height: 100vh;
         min-width: 100vw;
         transition: transform .6s, box-shadow .6s;
@@ -20,12 +19,36 @@
         background-color: whitesmoke;
     }
 
+    .mail-folder-list ul {
+        position: fixed;
+        flex-direction: column;
+        align-items: center;
+        top: 0;
+        left: 0;
+        min-height: 100vh;
+        transition: transform .6s, box-shadow .6s;
+        transform: translateX(-100%);
+        background-color: whitesmoke;
+        z-index: 30;
+    }
+
+    .mail-folder-list .toggle-menu {
+        align-self: flex-start;
+        margin-bottom: 20px;
+        box-shadow: none;
+    }
+
     .app-header.menu-opened nav {
         transform: translateX(0);
     }
 
-    .app-header .toggle-menu {
-        display: unset;
+    .mail-folder-list.menu-opened ul {
+        transform: translateX(0);
+    }
+
+    .mail-folder-list.menu-opened .main-screen {
+        opacity: 1;
+        pointer-events: auto;
     }
 
     .home .img-container {
@@ -36,6 +59,17 @@
         flex-direction: column;
     }
 
+    .mail-folder-list .btn-compose {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10;
+    }
+
+    .mail-folder-list ul a li {
+        min-width: 30vw;
+        padding: 20px;
+    }
 
     .note-list {
         column-count: 1;
@@ -66,7 +100,6 @@
     .note-preview {
         width: 40vw;
     }
-
 }
 
 /* Tablet */
@@ -83,14 +116,42 @@
         flex-direction: row;
     }
 
-    .app-header .btn-close,
-    .app-header .separate-line {
+    .app-header .separate-line,
+    .btn-close,
+    .toggle-menu {
         display: none;
+    }
+
+    .mail-app .main-container {
+        flex-direction: row;
     }
 
     .mail-preview {
         flex-direction: row;
         align-items: center;
+    }
+
+    .mail-folder-list {
+        margin-inline-end: 1vw;
+    }
+
+    .mail-folder-list>*:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    .mail-folder-list .btn-compose {
+        max-width: 110px;
+        align-self: center;
+        font-size: 1rem;
+    }
+    
+    .mail-folder-list ul a li {
+        padding: 3px;
+        min-width: 15vw;
+    }
+
+    .mail-folder-list .active li {
+        border-radius: 0 20px 20px 0;
     }
 
     .note-list {

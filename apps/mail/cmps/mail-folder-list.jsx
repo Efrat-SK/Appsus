@@ -6,7 +6,8 @@ class _MailFolderList extends React.Component {
 
     state = {
         status: 'inbox',
-        isCompose: false
+        isCompose: false,
+        folderClassName: ''
     }
 
     setStatus = ({ target }) => {
@@ -18,47 +19,58 @@ class _MailFolderList extends React.Component {
         this.setState({ isCompose: true }, () => this.props.isCompose(true))
     }
 
-    render() {
-        const unReadMailsCounter =  mailService.unReadMailsCounter()
+    openMenu = () => {
+        this.setState({ folderClassName: 'menu-opened' })
+    }
 
-        return <section className="mail-folder-list flex column">
-            <Link to={`/mail/${this.props.match.params.status}/compose`}>
-                <button className="btn-compose"
+    closeMenu = () => {
+        this.setState({ folderClassName: '' })
+    }
+
+    render() {
+        const unReadMailsCounter = mailService.unReadMailsCounter()
+        const { folderClassName } = this.state
+
+        return <section className={`mail-folder-list flex column ${folderClassName}`}>
+            {folderClassName && <div className="main-screen full" onClick={this.closeMenu}></div>}
+            <Link to={`/mail/${this.props.match.params.status}/compose`}
+                className="btn-compose">
+                <button
                     onClick={this.onIsCompose}>
                     ➕ Compose
                 </button>
             </Link>
-            <ul className="clean-list">
-                <NavLink to="/mail/inbox">
+            <ul className="clean-list flex column">
+                <NavLink to="/mail/inbox" onClick={this.closeMenu}>
                     <li className="inbox"
                         name="inbox"
                         onClick={this.setStatus}>
-                        Inbox 
+                        Inbox
                         {unReadMailsCounter > 0 && <span className="counter">{unReadMailsCounter}</span>}
                     </li>
                 </NavLink>
-                <NavLink to="/mail/star">
+                <NavLink to="/mail/star" onClick={this.closeMenu}>
                     <li className="star"
                         name="star"
                         onClick={this.setStatus}>
                         Starred
                     </li>
                 </NavLink>
-                <NavLink to="/mail/sent">
+                <NavLink to="/mail/sent" onClick={this.closeMenu}>
                     <li className="sent"
                         name="sent"
                         onClick={this.setStatus}>
                         Sent Mail
                     </li>
                 </NavLink>
-                <NavLink to="/mail/draft">
+                <NavLink to="/mail/draft" onClick={this.closeMenu}>
                     <li className="draft"
                         name="draft"
                         onClick={this.setStatus}>
                         Drafts
                     </li>
                 </NavLink>
-                <NavLink to="/mail/trash">
+                <NavLink to="/mail/trash" onClick={this.closeMenu}>
                     <li className="trash"
                         name="trash"
                         onClick={this.setStatus}>
@@ -66,6 +78,7 @@ class _MailFolderList extends React.Component {
                     </li>
                 </NavLink>
             </ul>
+            <button className="toggle-menu" onClick={this.openMenu}>☰</button>
         </section>
     }
 }

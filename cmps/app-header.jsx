@@ -18,7 +18,7 @@ export class AppHeader extends React.Component {
         const { headerClassName } = this.state
 
         return <header className={`app-header main-layout full ${headerClassName}`}>
-            <div className="header-container flex space-between">
+            <div className="header-container flex space-between align-center">
                 <Link to="/">
                     <h3>AppSus</h3>
                 </Link>

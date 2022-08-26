@@ -90,9 +90,10 @@ export class MailIndex extends React.Component {
         return (
             <section className="mail-app main-layout">
                 <MailFilter onSetFilter={this.onSetFilter} />
-                <div className="flex">
+                <main className="main-container flex column">
                     <MailFolderList onSetStatus={this.onSetStatus} isCompose={this.isCompose} />
-                    <MailList emails={emails} status={status} selectedMail={selectedMail} onSelectMail={this.onSelectMail} onResetMail={this.onResetMail} /></div>
+                    <MailList emails={emails} status={status} selectedMail={selectedMail} onSelectMail={this.onSelectMail} onResetMail={this.onResetMail} />
+                </main>
                 {isCompose && <MailCompose saveMail={this.saveMail} removeCompose={this.removeCompose} />}
             </section>
         )

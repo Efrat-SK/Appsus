@@ -1,9 +1,13 @@
 .app-header {
     background-color: whitesmoke;
     box-shadow: -13px 1px 0px whitesmoke;
-    padding: 25px;
     margin-bottom: 20px;
     font-size: 1.2rem;
+    min-height: 10vh;
+}
+
+.header-container {
+    min-height: 10vh;
 }
 
 nav a {
@@ -15,7 +19,7 @@ nav a.active {
     font-weight: bold;
 }
 
-.btn-close {
+.app-header .btn-close {
     position: absolute;
     top: 0;
     right: 0;
@@ -27,8 +31,7 @@ nav a.active {
     cursor: pointer;
 }
 
-.toggle-menu {
-    display: none;
+.app-header .toggle-menu {
     background-color: transparent;
     border: 0;
     cursor: pointer;
