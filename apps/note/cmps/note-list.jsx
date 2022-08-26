@@ -1,4 +1,3 @@
-// import { NotePreview } from "./note-preview.jsx";
 import { NoteTypeDynamic } from "./note-type-dynamic.jsx"
 
 export function NoteList({ notes, onRemoveNote, onEditNote }) {
