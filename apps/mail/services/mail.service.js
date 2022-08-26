@@ -61,6 +61,7 @@ function getById(mailId) {
 
 function unReadMailsCounter() {
     const emails = _loadFromStorage()
+    if (!emails) return
     const unReadEmails = emails.filter(email => !email.isRead)
     return unReadEmails.length
 }

@@ -33,7 +33,8 @@ class _MailFolderList extends React.Component {
                     <li className="inbox"
                         name="inbox"
                         onClick={this.setStatus}>
-                        Inbox <span className="counter">{unReadMailsCounter}</span>
+                        Inbox 
+                        {unReadMailsCounter > 0 && <span className="counter">{unReadMailsCounter}</span>}
                     </li>
                 </NavLink>
                 <NavLink to="/mail/star">

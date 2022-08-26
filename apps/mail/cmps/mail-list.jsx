@@ -4,31 +4,18 @@ import { MailPreview } from "./mail-preview.jsx"
 
 export class MailList extends React.Component {
 
-    state = {
-        selectedMail: null
-    }
-
-    onSelectMail = (mailId) => {
-        mailService.getById(mailId)
-            .then(email => this.setState({ selectedMail: email }))
-    }
-
-    onResetMail = () => {
-        this.setState({ selectedMail: null })
-    }
 
     render() {
-        const { emails, status } = this.props
-        const { selectedMail } = this.state
+        const { emails, status, onSelectMail, onResetMail, selectedMail } = this.props
 
         return <section>
             {!selectedMail && <table className="email-list">
                 <tbody>
                     {emails.map(email =>
-                        <MailPreview key={email.id} email={email} status={status} onSelectMail={this.onSelectMail} />)}
+                        <MailPreview key={email.id} email={email} status={status} onSelectMail={onSelectMail} />)}
                 </tbody>
             </table>}
-            {selectedMail && <MailDetails email={selectedMail} onResetMail={this.onResetMail} />}
+            {selectedMail && <MailDetails email={selectedMail} onResetMail={onResetMail} />}
         </section>
     }
 }
