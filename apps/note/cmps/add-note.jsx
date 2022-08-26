@@ -37,7 +37,9 @@ export class AddNote extends React.Component {
                     placeholder="Add your new note"
                     onChange={handleChange}
                 />
+                
             </form >
+
         </section >
     }
 }
