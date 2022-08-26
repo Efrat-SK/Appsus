@@ -4,7 +4,8 @@ import { utilService } from "../../../services/util.service.js"
 export const mailService = {
     query,
     getById,
-    save
+    save,
+    unReadMailsCounter
 }
 
 const STORAGE_KEY = 'emailsDB'
@@ -56,6 +57,12 @@ function getById(mailId) {
     const email = emails.find(email => mailId === email.id)
 
     return Promise.resolve(email)
+}
+
+function unReadMailsCounter() {
+    const emails = _loadFromStorage()
+    const unReadEmails = emails.filter(email => !email.isRead)
+    return unReadEmails.length
 }
 
 function save(mail) {

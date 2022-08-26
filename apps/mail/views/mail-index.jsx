@@ -3,6 +3,7 @@ import { MailFilter } from "../cmps/mail-filter.jsx"
 import { MailList } from "../cmps/mail-list.jsx"
 import { MailFolderList } from "../cmps/mail-folder-list.jsx"
 import { MailCompose } from "../cmps/mail-compose.jsx"
+import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js';
 
 export class MailIndex extends React.Component {
 
@@ -20,7 +21,6 @@ export class MailIndex extends React.Component {
 
     componentDidMount() {
         this.loadEmails()
-        this.props.history.push('/mail/inbox')
     }
 
     loadEmails = () => {
@@ -54,9 +54,9 @@ export class MailIndex extends React.Component {
     }
 
     saveMail = (mail, status) => {
-        console.log(status)
         mailService.save(mail)
             .then(() => {
+                showSuccessMsg('Your Email Send')
                 this.isCompose(false)
                 this.props.history.push(`/mail/${status}`)
             })

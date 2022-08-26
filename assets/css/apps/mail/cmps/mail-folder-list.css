@@ -25,3 +25,7 @@
     font-weight: bold;
     border-radius: 0 20px 20px 0;
 }
+
+.mail-folder-list .counter {
+    margin-inline-start: 15px;
+}
