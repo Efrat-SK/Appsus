@@ -1,0 +1,3 @@
+.main-layout>*:not(.full) {
+    padding: 5px;
+}

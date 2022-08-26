@@ -20,6 +20,10 @@
     font-size: 1.5rem;
 }
 
+.home .img-container {
+    flex-wrap: wrap;
+}
+
 .home .img-container img {
     height: 150px;
     width: 150px;

@@ -31,7 +31,7 @@ class _MailCompose extends React.Component {
         const { onSaveMail, handleChange, onRemove } = this
         const { to, subject, body } = this.state
 
-        return <section className="mail-compose flex column">
+        return <section className="mail-compose flex column full">
             <h4>New Message</h4>
             <form className="flex column" onSubmit={onSaveMail}>
                 <label>To:
