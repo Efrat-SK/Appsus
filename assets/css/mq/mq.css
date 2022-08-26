@@ -78,6 +78,11 @@
         min-width: 100%;
     }
 
+    .mail-details .btn-back {
+        position: absolute;
+        bottom: 25vh;
+    }
+
     .note-list {
         column-count: 1;
     }
@@ -167,6 +172,11 @@
         right: 10px;
         min-height: 60vh;
         min-width: 50vw;
+    }
+
+    .mail-details .btn-back {
+        align-self: flex-start;
+        margin-bottom: 20px;
     }
 
     .note-list {

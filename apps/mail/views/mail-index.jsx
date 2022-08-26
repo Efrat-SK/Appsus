@@ -79,8 +79,9 @@ export class MailIndex extends React.Component {
             .then(email => this.setState({ selectedMail: email }))
     }
 
-    onResetMail = () => {
+    onResetMail = (status) => {
         this.setState({ selectedMail: null })
+        this.props.history.push(`/mail/${status}`)
     }
 
     render() {

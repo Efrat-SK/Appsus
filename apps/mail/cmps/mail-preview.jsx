@@ -1,3 +1,5 @@
+const { Link } = ReactRouterDOM
+
 export function MailPreview({ email, status, onSelectMail }) {
 
     const readEmailClassName = (email.isRead) ? 'read' : 'un-read'
@@ -10,11 +12,13 @@ export function MailPreview({ email, status, onSelectMail }) {
     }
 
     const body = getTextBody()
-    return <tr className={`mail-preview ${readEmailClassName} flex`}
-        onClick={() => onSelectMail(email.id)}>
-        {status === 'inbox' && <td className="mail-from-name">{email.from.fullName}</td>}
-        {status === 'sent' && <td className="mail-to-name">To: {email.to.fullName}</td>}
-        <td className="mail-subject">{email.subject}</td>
-        <td className="mail-body">{body}</td>
-    </tr >
+    return <Link to={`/mail/${status}/${email.id}`}>
+        <article className={`mail-preview ${readEmailClassName} flex`}
+            onClick={() => onSelectMail(email.id)}>
+            {status === 'inbox' && <span className="mail-from-name">{email.from.fullName}</span>}
+            {status === 'sent' && <span className="mail-to-name">To: {email.to.fullName}</span>}
+            <span className="mail-subject">{email.subject}</span>
+            <span className="mail-body">{body}</span>
+        </article >
+    </Link>
 }

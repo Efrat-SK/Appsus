@@ -2,11 +2,6 @@
     min-height: 70vh;
 }
 
-.mail-details .btn-back {
-    align-self: flex-start;
-    margin-bottom: 20px;
-}
-
 .mail-details .subject {
     font-size: 1.5rem;
     margin-bottom: 20px;
