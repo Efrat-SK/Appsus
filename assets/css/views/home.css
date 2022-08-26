@@ -1,0 +1,32 @@
+.home {
+    text-align: center;
+    min-height: 60vh;
+}
+
+.home .home-headers {
+    margin-bottom: 40px;
+    font-family: roboto-thin, sans-serif;
+}
+
+.home .home-headers>*:not(:last-child) {
+    margin-bottom: 30px;
+}
+
+.home .home-headers h2 {
+    font-size: 2rem;
+}
+
+.home .home-headers h3 {
+    font-size: 1.5rem;
+}
+
+.home .img-container img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.home .img-container img:not(:last-child) {
+    margin-inline-end: 25px;
+}

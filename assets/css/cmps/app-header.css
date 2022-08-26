@@ -1,11 +1,9 @@
-header {
-    background: whitesmoke ;
-    /* border-bottom: 2px solid whitesmoke; */
-    box-shadow: -13px 1px 0px whitesmoke;
-}
-
 .app-header {
-    padding: 20px;
+    background-color: whitesmoke;
+    box-shadow: -13px 1px 0px whitesmoke;
+    padding: 25px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
 }
 
 nav a {
@@ -15,5 +13,4 @@ nav a {
 nav a.active {
     color: darkblue;
     font-weight: bold;
-    text-decoration: overline;
 }
