@@ -8,6 +8,10 @@
     margin-inline-end: 10px;
 }
 
+.mail-preview>*:last-child {
+   font-size: 0.9rem;
+}
+
 .mail-preview .mail-from-name,
 .mail-preview .mail-to-name {
     min-width: 130px;
