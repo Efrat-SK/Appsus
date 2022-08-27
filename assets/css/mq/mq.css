@@ -73,6 +73,12 @@
 
     .mail-preview {
         flex-direction: column;
+        position: relative;
+    }
+
+    .mail-preview .mail-date {
+        position: absolute;
+        right: 5px;
     }
 
     .mail-compose {
@@ -82,9 +88,19 @@
         min-width: 100%;
     }
 
-    .mail-details .btn-back {
+    .mail-details .btn-back,
+    .mail-details .btn-remove {
         position: absolute;
-        bottom: 25vh;
+        bottom: 20vh;
+    }
+
+    .mail-details .btn-remove {
+        left: 12vw
+    }
+
+    .mail-details .from {
+        flex-direction: column;
+        margin-bottom: 20px;
     }
 
     .note-list {

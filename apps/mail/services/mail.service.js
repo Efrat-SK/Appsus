@@ -5,7 +5,9 @@ export const mailService = {
     query,
     getById,
     save,
-    unReadMailsCounter
+    unReadMailsCounter,
+    removeMail,
+    getLoggedinUser
 }
 
 const STORAGE_KEY = 'emailsDB'
@@ -13,6 +15,10 @@ const STORAGE_KEY = 'emailsDB'
 const loggedinUser = {
     email: 'user@appsus.com',
     fullName: 'Mahatma Appsus'
+}
+
+function getLoggedinUser() {
+    return loggedinUser
 }
 
 function query(criteria) {
@@ -25,13 +31,19 @@ function query(criteria) {
     switch (criteria.status) {
         case 'inbox':
             emails = emails.filter(email => (
-                email.to.email === loggedinUser.email
+                email.to.email === loggedinUser.email &&
+                !email['removeAt']
             ))
             break
         case 'sent':
             emails = emails.filter(email => (
                 email.to.email !== loggedinUser.email
             ))
+            break
+        case 'trash':
+            emails = emails.filter(email => {
+                if (email['removeAt']) return email
+            })
             break
     }
 
@@ -42,7 +54,10 @@ function query(criteria) {
         emails = emails.filter(email => (
             (email.subject.toLowerCase().includes(txt) ||
                 email.body.toLowerCase().includes(txt) ||
-                email.from.fullName.toLowerCase().includes(txt))
+                email.from.fullName.toLowerCase().includes(txt) ||
+                email.from.email.toLowerCase().includes(txt) ||
+                email.to.fullName.toLowerCase().includes(txt) ||
+                email.to.email.toLowerCase().includes(txt))
         ))
     }
 
@@ -68,6 +83,21 @@ function unReadMailsCounter() {
 
 function save(mail) {
     return _add(mail)
+}
+
+function removeMail(mailId) {
+    let emails = _loadFromStorage()
+    console.log(emails)
+    const email = emails.find(email => mailId === email.id)
+    if (!email['removeAt']) {
+        email.removeAt = Date.now()
+        console.log(email)
+    } else {
+        emails = emails.filter(email => email.id !== mailId)
+        console.log(emails)
+    }
+    _saveToStorage(emails)
+    return Promise.resolve()
 }
 
 function _add({ to, subject, body }) {

@@ -12,6 +12,10 @@
     font-weight: bold;
 }
 
+.mail-details .from-email {
+    color: var(--color3);
+}
+
 .mail-details .to-fullName {
     margin-bottom: 30px;
 }

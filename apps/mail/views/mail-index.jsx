@@ -84,6 +84,16 @@ export class MailIndex extends React.Component {
         this.props.history.push(`/mail/${status}`)
     }
 
+    onRemoveMail = (mailId, status) => {
+        mailService.removeMail(mailId)
+            .then(() => {
+                this.onSetStatus(status)
+                if (status !== 'trash')
+                    showSuccessMsg('Your email has been moved to Trash')
+                else showSuccessMsg('Email Deleted')
+            })
+    }
+
     render() {
         const { emails, isCompose, selectedMail } = this.state
         const { status } = this.state.criteria
@@ -93,7 +103,7 @@ export class MailIndex extends React.Component {
                 <MailFilter onSetFilter={this.onSetFilter} />
                 <main className="main-container flex column">
                     <MailFolderList onSetStatus={this.onSetStatus} isCompose={this.isCompose} />
-                    <MailList emails={emails} status={status} selectedMail={selectedMail} onSelectMail={this.onSelectMail} onResetMail={this.onResetMail} />
+                    <MailList emails={emails} status={status} selectedMail={selectedMail} onSelectMail={this.onSelectMail} onResetMail={this.onResetMail} onRemoveMail={this.onRemoveMail} />
                 </main>
                 {isCompose && <MailCompose saveMail={this.saveMail} removeCompose={this.removeCompose} />}
             </section>

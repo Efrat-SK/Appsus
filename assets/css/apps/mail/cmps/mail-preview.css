@@ -1,6 +1,6 @@
 .mail-preview {
     padding: 5px;
-    border: 1px solid whitesmoke;
+    border: 1px solid var(--color1);
     cursor: pointer;
 }
 
@@ -17,12 +17,13 @@
     min-width: 130px;
 }
 
-.mail-preview .mail-body {
-    color: gray;
+.mail-preview .mail-body,
+.mail-preview .mail-date {
+    color: var(--color3);
 }
 
 .mail-preview:hover {
-    border: 1px solid lightgray;
+    border: 1px solid var(--color2);
 }
 
 .read {
