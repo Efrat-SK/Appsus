@@ -11,12 +11,12 @@ export function About() {
             <div className="team-member flex column justify-center align-center">
                 <h3>Tal Elmaliach Hemo</h3>
                 <p>App Developer</p>
-                <img src='../assets/img/tal.jpg' />
+                <img src='assets/img/tal.jpg' />
             </div>
             <div className="team-member flex column justify-center align-center">
                 <h3>Efrat Schwarz Kahana</h3>
                 <p>App Developer</p>
-                <img src='../assets/img/efrat.jpg' />
+                <img src='assets/img/efrat.jpg' />
             </div>
         </div>
     </section>
