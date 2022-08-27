@@ -11,7 +11,9 @@ export class MailDetails extends React.Component {
         return <section className="mail-details flex column">
             <div className="btns flex align-center">
             <button className="btn-back" onClick={() => onResetMail(status)}>⬅</button>
-            <button className="btn-remove" onClick={() => onRemoveMail(email.id, status)}>Delete</button>
+            <button className="btn-remove" onClick={() => onRemoveMail(email.id, status)}>
+                <img src="assets/img/trash.png" alt="trash" />
+            </button>
             </div>
             <h1 className="subject">{subject}</h1>
             <div className="flex space-between">

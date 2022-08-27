@@ -52,7 +52,9 @@ class _MailCompose extends React.Component {
                     onChange={handleChange}>
                 </textarea>
                 <button className="send">Send</button>
-                <button className="remove" onClick={onRemove}>Delete</button>
+                <button className="btn-remove" onClick={onRemove}>
+                    <img src="assets/img/trash.png" alt="trash" />
+                </button>
             </form>
         </section>
     }

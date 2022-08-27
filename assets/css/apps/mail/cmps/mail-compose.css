@@ -47,7 +47,7 @@
 }
 
 .send,
-.remove {
+.btn-remove {
     position: absolute;
     bottom: 10px;
 }
@@ -56,6 +56,11 @@
     left: 10px;
 }
 
-.remove {
+.btn-remove {
     right: 10px;
+}
+
+.mail-compose .btn-remove img {
+    height: 20px;
+    width: 20px;
 }
