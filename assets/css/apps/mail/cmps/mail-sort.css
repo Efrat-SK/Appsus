@@ -1,0 +1,15 @@
+.mail-sort {
+    padding: 5px;
+    margin: 10px;
+}
+
+.mail-sort select {
+    border: 0;
+    margin-inline-end: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.mail-sort .descending {
+    font-size: 0.8rem;
+}

@@ -22,10 +22,14 @@ export function MailPreview({ email, status, onSelectMail }) {
     return <Link to={`/mail/${status}/${email.id}`}>
         <article className={`mail-preview ${readEmailClassName} flex`}
             onClick={() => onSelectMail(email.id)}>
-            {email.from.fullName !== loggedinUser.fullName && <span className="mail-from-name">{email.from.fullName}</span>}
-            {email.from.fullName === loggedinUser.fullName && <span className="mail-to-name">To: {email.to.fullName}</span>}
-            <span className="mail-subject">{email.subject}</span>
-            <span className="mail-body">{body}</span>
+            <div className="mail-name">
+                {email.from.fullName !== loggedinUser.fullName && <span className="mail-from-name">{email.from.fullName}</span>}
+                {email.from.fullName === loggedinUser.fullName && <span className="mail-to-name">To: {email.to.fullName}</span>}
+            </div>
+            <div className="text flex">
+                <span className="mail-subject">{email.subject}</span>
+                <span className="mail-body">{body}</span>
+            </div>
             <span className="mail-date">{`${date[0]} ${month}`}</span>
         </article >
     </Link>

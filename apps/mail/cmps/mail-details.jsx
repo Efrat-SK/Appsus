@@ -9,6 +9,10 @@ export class MailDetails extends React.Component {
         const month = utilService.getMonthName(date[1] - 1)
 
         return <section className="mail-details flex column">
+            <div className="btns flex align-center">
+            <button className="btn-back" onClick={() => onResetMail(status)}>⬅</button>
+            <button className="btn-remove" onClick={() => onRemoveMail(email.id, status)}>Delete</button>
+            </div>
             <h1 className="subject">{subject}</h1>
             <div className="flex space-between">
                 <div className="from flex">
@@ -19,8 +23,6 @@ export class MailDetails extends React.Component {
             </div>
             <span className="to-fullName">To: {to.fullName}</span>
             <p className="body">{body}</p>
-            <button className="btn-back" onClick={() => onResetMail(status)}>⬅</button>
-            <button className="btn-remove" onClick={() => onRemoveMail(email.id, status)}>Delete</button>
         </section>
     }
 }

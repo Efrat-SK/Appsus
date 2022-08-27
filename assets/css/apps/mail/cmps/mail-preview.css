@@ -9,7 +9,7 @@
 }
 
 .mail-preview>*:last-child {
-   font-size: 0.9rem;
+    font-size: 0.9rem;
 }
 
 .mail-preview .mail-from-name,
@@ -17,9 +17,29 @@
     min-width: 130px;
 }
 
+.mail-preview .mail-name {
+    min-width: 130px;
+}
+
+.mail-preview .mail-subject {
+    margin-inline-end: 10px;
+}
+
+
+.mail-preview .mail-date {
+    white-space: nowrap;
+}
+
 .mail-preview .mail-body,
 .mail-preview .mail-date {
     color: var(--color3);
+}
+
+.mail-preview .text,
+.mail-preview .mail-body {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .mail-preview:hover {

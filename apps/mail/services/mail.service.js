@@ -21,7 +21,7 @@ function getLoggedinUser() {
     return loggedinUser
 }
 
-function query(criteria) {
+function query(criteria, sortBy, isDesc) {
     let emails = _loadFromStorage()
     if (!emails) {
         emails = _createEmails()
@@ -63,6 +63,11 @@ function query(criteria) {
 
     if (isRead !== null) emails = emails.filter(email => email.isRead == isRead)
 
+    if (sortBy) {
+        if (!sortBy.noSort)
+            emails = sort(sortBy, isDesc, emails)
+    }
+
     return Promise.resolve(emails)
 }
 
@@ -72,6 +77,19 @@ function getById(mailId) {
     const email = emails.find(email => mailId === email.id)
 
     return Promise.resolve(email)
+}
+
+function sort(sortBy, isDesc, emails) {
+    const { title, name, date } = sortBy
+
+    if (title)
+        emails.sort((email1, email2) => email1.subject.localeCompare(email2.subject) * isDesc)
+    if (name)
+        emails.sort((email1, email2) => email1.from.fullName.localeCompare(email2.from.fullName) * isDesc)
+    if (date)
+        emails.sort((email1, email2) => (email1.sentAt - email2.sentAt) * isDesc)
+
+    return emails
 }
 
 function unReadMailsCounter() {
