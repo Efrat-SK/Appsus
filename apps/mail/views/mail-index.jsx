@@ -20,7 +20,7 @@ export class MailIndex extends React.Component {
         selectedMail: null,
         isCompose: false,
         sortBy: null,
-        isDesc: 1
+        isDesc: 1,
     }
 
     componentDidMount() {
@@ -102,6 +102,13 @@ export class MailIndex extends React.Component {
         this.setState({ sortBy, isDesc }, () => this.loadEmails())
     }
 
+    onToggleIsStar = (mailId, status) => {
+            mailService.toggleIsStar(mailId)
+                .then(() => {
+                    this.loadEmails()
+                })
+    }
+
     render() {
         const { emails, isCompose, selectedMail } = this.state
         const { status } = this.state.criteria
@@ -112,9 +119,9 @@ export class MailIndex extends React.Component {
                     <MailFilter onSetFilter={this.onSetFilter} />
                     <MailSort onSetSort={this.onSetSort} />
                 </div>
-                <main className="main-container main-layout flex column">
+                <main className="main-container flex column">
                     <MailFolderList onSetStatus={this.onSetStatus} isCompose={this.isCompose} />
-                    <MailList emails={emails} status={status} selectedMail={selectedMail} onSelectMail={this.onSelectMail} onResetMail={this.onResetMail} onRemoveMail={this.onRemoveMail} />
+                    <MailList emails={emails} status={status} selectedMail={selectedMail} onSelectMail={this.onSelectMail} onResetMail={this.onResetMail} onRemoveMail={this.onRemoveMail} onToggleIsStar={this.onToggleIsStar} />
                 </main>
                 {isCompose && <MailCompose saveMail={this.saveMail} removeCompose={this.removeCompose} />}
             </section>

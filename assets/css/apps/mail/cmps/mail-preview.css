@@ -8,8 +8,14 @@
     margin-inline-end: 10px;
 }
 
-.mail-preview>*:last-child {
+.mail-preview .mail-body,
+.mail-preview .mail-date {
     font-size: 0.9rem;
+}
+
+.mail-preview img {
+    height: 13px;
+    width: 13px;
 }
 
 .mail-preview .mail-from-name,

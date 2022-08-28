@@ -80,13 +80,22 @@
         position: relative;
     }
 
+    .mail-preview .content {
+        flex-direction: column;
+    }
+
     .mail-preview .text {
         flex-direction: column;
     }
 
     .mail-preview .mail-date {
         position: absolute;
-        right: 5px;
+        right: 35px;
+    }
+
+    .mail-preview .star {
+        position: absolute;
+        right: 2px;
     }
 
     .mail-compose {
@@ -120,8 +129,8 @@
     }
 }
 
-/* Mobile */
-@media (min-width: 400px) {
+/* SMALL - Mobile */
+@media (min-width: 540px) {
     .main-layout>*:not(.full) {
         max-width: var(--small);
         margin-right: 5px;
@@ -142,7 +151,7 @@
     }
 }
 
-/* Tablet */
+/* MEDIUM - TABLET */
 @media (min-width: 820px) {
     .main-layout>*:not(.full) {
         max-width: var(--medium);
@@ -223,7 +232,7 @@
     }
 }
 
-/* Desktop */
+/* LARGE - DESKTOP */
 @media (min-width: 1020px) {
     .main-layout>*:not(.full) {
         max-width: var(--large);
@@ -234,7 +243,7 @@
     }
 
     .mail-preview .text {
-        width: 560px;
+        width: 550px;
     }
 
     .note-list {

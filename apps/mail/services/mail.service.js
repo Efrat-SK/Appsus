@@ -7,7 +7,8 @@ export const mailService = {
     save,
     unReadMailsCounter,
     removeMail,
-    getLoggedinUser
+    getLoggedinUser,
+    toggleIsStar
 }
 
 const STORAGE_KEY = 'emailsDB'
@@ -40,11 +41,15 @@ function query(criteria, sortBy, isDesc) {
                 email.to.email !== loggedinUser.email
             ))
             break
+        case 'star':
+            emails = emails.filter(email => {
+                if (email.isStar) return email
+            })
+            break
         case 'trash':
             emails = emails.filter(email => {
                 if (email['removeAt']) return email
             })
-            break
     }
 
     const txt = criteria.txt.toLowerCase()
@@ -92,6 +97,15 @@ function sort(sortBy, isDesc, emails) {
     return emails
 }
 
+function toggleIsStar(mailId) {
+    let emails = _loadFromStorage()
+    let emailToUpdate = emails.find(email => mailId === email.id)
+    emailToUpdate.isStar = !emailToUpdate.isStar
+    emails = emails.map(email => email.id === mailId ? emailToUpdate : email)
+    _saveToStorage(emails)
+    return Promise.resolve()
+}
+
 function unReadMailsCounter() {
     const emails = _loadFromStorage()
     if (!emails) return
@@ -105,14 +119,12 @@ function save(mail) {
 
 function removeMail(mailId) {
     let emails = _loadFromStorage()
-    console.log(emails)
     const email = emails.find(email => mailId === email.id)
+
     if (!email['removeAt']) {
         email.removeAt = Date.now()
-        console.log(email)
     } else {
         emails = emails.filter(email => email.id !== mailId)
-        console.log(emails)
     }
     _saveToStorage(emails)
     return Promise.resolve()
@@ -141,6 +153,7 @@ function _createEmails() {
             subject: 'Miss you!',
             body: 'Would love to catch up sometimes',
             isRead: true,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Mahatma Appsus',
@@ -156,6 +169,7 @@ function _createEmails() {
             subject: 'Noga and 66 others made changes in your shared folders',
             body: 'You have activity in Shared Folders',
             isRead: false,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'DropBox',
@@ -171,6 +185,7 @@ function _createEmails() {
             subject: 'Vacation this summer!',
             body: 'I want to schedule a vacation for us this summer, do you have a favorite destination?',
             isRead: true,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Mahatma Appsus',
@@ -186,6 +201,7 @@ function _createEmails() {
             subject: 'Welcome to our Website!',
             body: 'Congratulations! You have successfully connected to our site',
             isRead: false,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Slack',
@@ -201,6 +217,7 @@ function _createEmails() {
             subject: 'Send me please our photos',
             body: 'Hi! How Are You? would you please send me soon our photos together? tnx!!',
             isRead: true,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Mahatma Appsus',
@@ -216,6 +233,7 @@ function _createEmails() {
             subject: 'See my project !',
             body: 'Hi, I uploaded my project to Facebook, go and take a look :)',
             isRead: true,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Josef Ben Simon',
@@ -231,6 +249,7 @@ function _createEmails() {
             subject: 'some updates',
             body: 'Hi, just so you know. I updated the system so that everything is working again, let me know if there are any more problems, have a good day',
             isRead: true,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Mahatma Appsus',
@@ -246,6 +265,7 @@ function _createEmails() {
             subject: 'I opened an Instagram profile!',
             body: 'I opened an Instagram profile! Feel free to follow me on Instagram: nim_1981',
             isRead: true,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Nimrod Meno',
@@ -261,6 +281,7 @@ function _createEmails() {
             subject: 'Liron opened an Instagram profile!',
             body: 'Your friend Liron opened an Instagram profile! go follow her :)',
             isRead: true,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Instagram',
@@ -276,6 +297,7 @@ function _createEmails() {
             subject: 'Miss you!',
             body: 'Would love to catch up sometimes',
             isRead: true,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Mahatma Appsus',
@@ -291,6 +313,7 @@ function _createEmails() {
             subject: 'Miss you!',
             body: 'Would love to catch up sometimes',
             isRead: true,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Mahatma Appsus',
@@ -306,6 +329,7 @@ function _createEmails() {
             subject: 'I Miss you too!',
             body: 'How about friday? We can go to the new Coffee Shop',
             isRead: false,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Efrat Cohen',
@@ -321,6 +345,7 @@ function _createEmails() {
             subject: 'Complaint about the service at the store in Rishon Lezion',
             body: 'I am not satisfied with your service, I demand compensation! My contact phone number is 0525381648',
             isRead: true,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Mahatma Appsus',
@@ -336,6 +361,7 @@ function _createEmails() {
             subject: 'Miss you!',
             body: 'Would love to catch up sometimes, What about Friday?',
             isRead: true,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Rona Nala',
@@ -351,6 +377,7 @@ function _createEmails() {
             subject: 'making an appointment',
             body: 'Hello, how are you Gal? Can I get my nails done tomorrow?',
             isRead: true,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Mahatma Appsus',
@@ -366,6 +393,7 @@ function _createEmails() {
             subject: 'changing an appointment',
             body: 'Hello, how are you Gal? Can I change my appointment to Friday? Thank You',
             isRead: true,
+            isStar: false,
             sentAt: Date.now(),
             from: {
                 fullName: 'Mahatma Appsus',

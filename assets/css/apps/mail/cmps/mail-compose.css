@@ -46,17 +46,17 @@
     outline: none;
 }
 
-.send,
-.btn-remove {
+.mail-compose .send,
+.mail-compose .btn-remove {
     position: absolute;
     bottom: 10px;
 }
 
-.send {
+.mail-compose .send {
     left: 10px;
 }
 
-.btn-remove {
+.mail-compose .btn-remove {
     right: 10px;
 }
 
