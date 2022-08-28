@@ -1,5 +1,6 @@
 import { mailService } from "../services/mail.service.js"
 import { MailFilter } from "../cmps/mail-filter.jsx"
+import { MailSort } from "../cmps/mail-sort.jsx"
 import { MailList } from "../cmps/mail-list.jsx"
 import { MailFolderList } from "../cmps/mail-folder-list.jsx"
 import { MailCompose } from "../cmps/mail-compose.jsx"
@@ -17,7 +18,9 @@ export class MailIndex extends React.Component {
             lables: ['important', 'romantic']
         },
         selectedMail: null,
-        isCompose: false
+        isCompose: false,
+        sortBy: null,
+        isDesc: 1,
     }
 
     componentDidMount() {
@@ -26,8 +29,9 @@ export class MailIndex extends React.Component {
     }
 
     loadEmails = () => {
-        const { criteria } = this.state
-        mailService.query(criteria)
+        const { criteria, sortBy, isDesc } = this.state
+
+        mailService.query(criteria, sortBy, isDesc)
             .then((emails) => this.setState({ emails }))
     }
 
@@ -84,16 +88,40 @@ export class MailIndex extends React.Component {
         this.props.history.push(`/mail/${status}`)
     }
 
+    onRemoveMail = (mailId, status) => {
+        mailService.removeMail(mailId)
+            .then(() => {
+                this.onSetStatus(status)
+                if (status !== 'trash')
+                    showSuccessMsg('Your email has been moved to Trash')
+                else showSuccessMsg('Email Deleted')
+            })
+    }
+
+    onSetSort = (sortBy, isDesc) => {
+        this.setState({ sortBy, isDesc }, () => this.loadEmails())
+    }
+
+    onToggleIsStar = (mailId, status) => {
+            mailService.toggleIsStar(mailId)
+                .then(() => {
+                    this.loadEmails()
+                })
+    }
+
     render() {
         const { emails, isCompose, selectedMail } = this.state
         const { status } = this.state.criteria
 
         return (
             <section className="mail-app main-layout">
-                <MailFilter onSetFilter={this.onSetFilter} />
+                <div className="filter-sort flex justify-center">
+                    <MailFilter onSetFilter={this.onSetFilter} />
+                    <MailSort onSetSort={this.onSetSort} />
+                </div>
                 <main className="main-container flex column">
                     <MailFolderList onSetStatus={this.onSetStatus} isCompose={this.isCompose} />
-                    <MailList emails={emails} status={status} selectedMail={selectedMail} onSelectMail={this.onSelectMail} onResetMail={this.onResetMail} />
+                    <MailList emails={emails} status={status} selectedMail={selectedMail} onSelectMail={this.onSelectMail} onResetMail={this.onResetMail} onRemoveMail={this.onRemoveMail} onToggleIsStar={this.onToggleIsStar} />
                 </main>
                 {isCompose && <MailCompose saveMail={this.saveMail} removeCompose={this.removeCompose} />}
             </section>

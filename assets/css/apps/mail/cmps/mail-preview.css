@@ -1,6 +1,6 @@
 .mail-preview {
     padding: 5px;
-    border: 1px solid whitesmoke;
+    border: 1px solid var(--color1);
     cursor: pointer;
 }
 
@@ -8,8 +8,14 @@
     margin-inline-end: 10px;
 }
 
-.mail-preview>*:last-child {
-   font-size: 0.9rem;
+.mail-preview .mail-body,
+.mail-preview .mail-date {
+    font-size: 0.9rem;
+}
+
+.mail-preview img {
+    height: 13px;
+    width: 13px;
 }
 
 .mail-preview .mail-from-name,
@@ -17,12 +23,33 @@
     min-width: 130px;
 }
 
+.mail-preview .mail-name {
+    min-width: 130px;
+}
+
+.mail-preview .mail-subject {
+    margin-inline-end: 10px;
+}
+
+
+.mail-preview .mail-date {
+    white-space: nowrap;
+}
+
+.mail-preview .mail-body,
+.mail-preview .mail-date {
+    color: var(--color3);
+}
+
+.mail-preview .text,
 .mail-preview .mail-body {
-    color: gray;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .mail-preview:hover {
-    border: 1px solid lightgray;
+    border: 1px solid var(--color2);
 }
 
 .read {

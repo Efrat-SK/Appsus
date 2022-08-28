@@ -1,5 +1,7 @@
 :root {
-    --main-bg-color: lightblue;
+    --color1: whitesmoke;
+    --color2: lightgray;
+    --color3: gray;
 
     --large: 1000px;
     --medium: 800px;

@@ -46,16 +46,21 @@
     outline: none;
 }
 
-.send,
-.remove {
+.mail-compose .send,
+.mail-compose .btn-remove {
     position: absolute;
     bottom: 10px;
 }
 
-.send {
+.mail-compose .send {
     left: 10px;
 }
 
-.remove {
+.mail-compose .btn-remove {
     right: 10px;
+}
+
+.mail-compose .btn-remove img {
+    height: 20px;
+    width: 20px;
 }

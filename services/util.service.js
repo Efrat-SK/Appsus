@@ -80,6 +80,5 @@ function getDate(date) {
     (currentdate.getMonth() + 1),
     currentdate.getFullYear()]
 
-    console.log(datetime)
     return datetime;
 }

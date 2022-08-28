@@ -12,10 +12,19 @@
     font-weight: bold;
 }
 
+.mail-details .from-email {
+    color: var(--color3);
+}
+
 .mail-details .to-fullName {
     margin-bottom: 30px;
 }
 
 .mail-details .body {
     min-height: 50vh;
+}
+
+.mail-details .btn-remove img {
+    height: 20px;
+    width: 20px;
 }
