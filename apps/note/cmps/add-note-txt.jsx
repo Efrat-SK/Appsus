@@ -14,7 +14,7 @@ export class AddNoteTxt extends React.Component {
     }
 
     handleTypeChange = () => {
-        console.log('change');
+        // console.log('change');
     }
 
     handleChange = ({ target }) => {
