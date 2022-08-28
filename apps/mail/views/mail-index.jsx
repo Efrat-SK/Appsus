@@ -63,7 +63,7 @@ export class MailIndex extends React.Component {
     saveMail = (mail, status) => {
         mailService.save(mail)
             .then(() => {
-                showSuccessMsg('Your Email Send')
+                showSuccessMsg('Email Sent')
                 this.isCompose(false)
                 this.props.history.push(`/mail/${status}`)
             })
