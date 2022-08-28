@@ -8,7 +8,7 @@ export const mailService = {
     unReadMailsCounter,
     removeMail,
     getLoggedinUser,
-    toggleIsStar
+    toggleIsStar,
 }
 
 const STORAGE_KEY = 'emailsDB'
@@ -113,14 +113,10 @@ function unReadMailsCounter() {
     return unReadEmails.length
 }
 
-function save(mail) {
-    return _add(mail)
-}
-
 function removeMail(mailId) {
     let emails = _loadFromStorage()
     const email = emails.find(email => mailId === email.id)
-
+    
     if (!email['removeAt']) {
         email.removeAt = Date.now()
     } else {
@@ -128,6 +124,10 @@ function removeMail(mailId) {
     }
     _saveToStorage(emails)
     return Promise.resolve()
+}
+
+function save(mail) {
+    return _add(mail)
 }
 
 function _add({ to, subject, body }) {

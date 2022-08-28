@@ -63,13 +63,6 @@ class _MailFolderList extends React.Component {
                         Sent Mail
                     </li>
                 </NavLink>
-                <NavLink to="/mail/draft" onClick={this.closeMenu}>
-                    <li className="draft"
-                        name="draft"
-                        onClick={this.setStatus}>
-                        Drafts
-                    </li>
-                </NavLink>
                 <NavLink to="/mail/trash" onClick={this.closeMenu}>
                     <li className="trash"
                         name="trash"
