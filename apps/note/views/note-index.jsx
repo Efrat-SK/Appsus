@@ -5,8 +5,7 @@ import { noteService } from '../services/note.service.js';
 export class NoteIndex extends React.Component {
 
     state = {
-        notes: [],
-        filterBy: null
+        notes: []
     }
 
     componentDidMount() {
@@ -21,16 +20,28 @@ export class NoteIndex extends React.Component {
 
     onEditNote = (ev, note) => {
         console.log(ev)
-        // console.log(note)
-        // console.log(note.id)
         console.log(note.info)
+        console.log(note.type)
+        let updatedNote
+        switch (note.type) {
+            case "note-txt":
+                updatedNote = { ...note, txt: ev.target.innerText }
+                console.log('updatedNote', updatedNote)
+                noteService.update(note, ev.target.innerText)
+                    .then(() => {
+                        this.setState(this.loadNotes)
+                    })
+                break;
+            case "note-todos":
+                updatedNote = { ...note, txt: ev.target.innerText }
+                console.log('updatedNote', updatedNote)
+                noteService.update(note, ev.target.innerText)
+                    .then(() => {
+                        this.setState(this.loadNotes)
+                    })
+                break;
+        }
 
-        const updatedNote = { ...note, txt: ev.target.innerText }
-        console.log('updatedNote', updatedNote)
-        noteService.update(note , ev.target.innerText)
-            .then(() => {
-                this.setState(this.loadNotes)
-            })
     }
 
     onRemoveNote = (noteId) => {

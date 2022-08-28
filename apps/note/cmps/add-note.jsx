@@ -1,8 +1,11 @@
+import { utilService } from "../../../services/util.service.js"
 
 export class AddNote extends React.Component {
 
     state = {
         note: {
+            id: utilService.makeId(),
+            type: 'note-txt',
             info: '',
         }
 
@@ -14,6 +17,7 @@ export class AddNote extends React.Component {
         this.setState(({ note }) => ({
             note: { ...note, [field]: value }
         }))
+        console.log(this.state.note)
         //this.setState((prevState)=>(...prevState,note:{...prevState.note,[field]:value}))
     }
 
@@ -27,19 +31,31 @@ export class AddNote extends React.Component {
     render() {
         console.log('renders')
         const { info } = this.state.note
-        // const { note } = this.state
         const { handleChange } = this
-        const { onAddNote } = this.props
-        return <section className="note-add">
-            < form className="flex column align-center" onSubmit={this.addNote} >
-                <input type="text" name="info"
-                    value={info} id="info"
-                    placeholder="Add your new note"
-                    onChange={handleChange}
-                />
-                
-            </form >
+        return <section>
+            <label htmlFor="info">
+            <section className="note-add flex full space-between align-center">
+                < form onSubmit={this.addNote} >
+                    <input type="text" name="info"
+                        value={info} id="info"
+                        placeholder="Add your new note" autoComplete="off"
+                        onChange={handleChange}
+                    />
+                </form >
+                <section className="flex space-between">
+                    <div className="add-btn flex align-center justify-center">
+                        <img src="apps/note/img/text.png" alt="text" />
+                    </div>
+                    <div className="add-btn flex align-center justify-center">
+                        <img src="apps/note/img/image.png" alt="img" />
+                    </div>
+                    <div className="add-btn flex align-center justify-center">
+                        <img src="apps/note/img/to-do-list.png" alt="todo" />
+                    </div>
+                </section>
+            </section >
+            </label>
+        </section>
 
-        </section >
     }
 }

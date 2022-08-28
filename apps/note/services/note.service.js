@@ -15,48 +15,30 @@ const gNotes = [
     {
         id: utilService.makeId(),
         type: "note-txt",
-        // isPinned: true,
-        info: {
-            txt: "Fullstack Me Baby!"
-        }
+        info: "Fullstack Me Baby!"
     },
     {
         id: utilService.makeId(),
         type: "note-txt",
-        // isPinned: true,
-        info: {
-            txt: "Hello note"
-        }
+        info: "Hello note"
     },
     {
         id: utilService.makeId(),
         type: "note-txt",
-        // isPinned: true,
-        info: {
-            txt: "Notes are my favorite"
-        }
+        info: "Notes are my favorite"
     },
     {
-        id: "n102",
+        id: utilService.makeId(),
         type: "note-img",
-        info: {
-            url: "http://some-img/me",
-            title: "Bobi and Me"
-        },
-        // style: {
-        //     backgroundColor: "#00d"
-        // }
+        info: "https://img.freepik.com/free-vector/spring-flower-collection_23-2148853687.jpg?w=2000",
     },
     {
-        id: "n103",
+        id: utilService.makeId(),
         type: "note-todos",
-        info: {
-            label: "Get my stuff together",
-            todos: [
-                { txt: "Driving liscence", doneAt: null },
-                { txt: "Coding power", doneAt: 187111111 }
-            ]
-        }
+        info: [
+            "Driving liscence",
+            "Coding power"
+        ]
     }
 ]
 
@@ -76,22 +58,19 @@ function getById(noteId) {
     return Promise.resolve(note)
 }
 
-function save({ info }) {
-    console.log('info: ', info)
+function save(newNote) {
+    console.log('newNote: ', newNote)
     let notes = _loadFromStorage()
-    const newNote = _createNote(info)
     notes = [newNote, ...notes]
-    console.log('notes: ', notes)
     _saveToStorage(notes)
     return Promise.resolve(newNote)
 }
 
-function update(noteToUpdate , newText) {
-    let updatedNote = _updateNote(noteToUpdate , newText)
+function update(noteToUpdate, newInput) {
+    let updatedNote = _updateNote(noteToUpdate, newInput)
     let notes = _loadFromStorage()
     notes = notes.map(note => note.id === noteToUpdate.id ? updatedNote : note)
     _saveToStorage(notes)
-    console.log('notes: ', notes)
     return Promise.resolve(updatedNote)
 }
 
@@ -102,23 +81,11 @@ function remove(noteId) {
     return Promise.resolve()
 }
 
-function _createNote(info) {
-    const infoValue = { txt: info }
-    return {
-        id: utilService.makeId(),
-        type: "note-txt",
-        // isPinned: true,
-        info: infoValue
-    }
-}
-
-function _updateNote(note, newText) {
-    const infoValue = { txt: newText }
+function _updateNote(note, newInfo) {
     return {
         id: note.id,
-        type: "note-txt",
-        // isPinned: true,
-        info: infoValue
+        type: note.type,
+        info: newInfo
     }
 }
 

@@ -1,10 +1,47 @@
-.note-add *>input{
-    /* height: 70px; */
+.note-add {
+    height: 45px;
     width: 50vw;
     margin: 15px;
-    padding: 15px;
+    margin-bottom: 20px;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
     border: 1px solid gray;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    background-color: white;
 }
 
+.note-add {
+    border: 1.5px solid rgb(92, 91, 91)
+}
+
+.note-add * input {
+    border: 1px solid rgba(128, 128, 128, 0);
+    font-size: large;
+}
+
+input:focus{
+    outline: none;
+}
+
+.note-add * div {
+    font-size: large;
+    background-color: rgba(240, 248, 255, 0);
+    margin: 4px;
+    width: 45px;
+    height: 45px;
+
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+.note-add * div:hover {
+    background-color: #B1D7B4;
+    transition: all 0.5s;
+}
+
+.note-add * img {
+    width: 30px;
+    height: 30px;
+}
