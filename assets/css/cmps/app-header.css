@@ -1,5 +1,5 @@
 .app-header {
-    background-color: #B1D7B4;
+    background-color: var(--color1);
     box-shadow: -13px 1px 0px whitesmoke;
     margin-bottom: 20px;
     font-size: 1.2rem;
@@ -12,11 +12,11 @@
 
 nav a {
     margin: .5em;
-    color: #F7F6DC;
+    color: var(--color2);
 }
 
 nav a.active {
-    color: #7FB77E;
+    color: var(--color3);
     font-weight: bold;
 }
 

@@ -37,7 +37,7 @@ input:focus{
 }
 
 .note-add * div:hover {
-    background-color: #B1D7B4;
+    background-color: var(--color1);
     transition: all 0.5s;
 }
 
