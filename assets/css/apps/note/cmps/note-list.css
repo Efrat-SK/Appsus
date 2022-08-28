@@ -6,7 +6,7 @@
     align-items: flex-start;
     justify-content: space-between;
 
-    background-color: rgb(184, 184, 184);
+    background-color:  var(--color3);;
     border-radius: 8px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 

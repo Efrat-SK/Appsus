@@ -26,7 +26,7 @@ export class AppHeader extends React.Component {
                     <button className="btn-close" onClick={this.closeMenu}>X</button>
                     <NavLink to="/mail" onClick={this.closeMenu}>Mail</NavLink>
                     <span className="separate-line">_____</span>
-                    <NavLink to="/note" onClick={this.closeMenu}>Note</NavLink>
+                    <NavLink to="/note/AddTxt" onClick={this.closeMenu}>Note</NavLink>
                     <span className="separate-line">_____</span>
                     <NavLink to="/book" onClick={this.closeMenu}>Book</NavLink>
                     <span className="separate-line">_____</span>
