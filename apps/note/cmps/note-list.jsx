@@ -14,7 +14,7 @@ export function NoteList({ notes, onRemoveNote, onEditNote }) {
                             <img src="assets/img/email.png" alt="mail" />
                         </button>
                     </Link>
-                    <button>
+                    <button onClick={() => onRemoveNote(note.id)}>
                         <img src="assets/img/trash.png" alt="trash" />
                     </button>
 

@@ -1,11 +1,19 @@
-import { AddNote } from "../cmps/add-note.jsx";
+import { AddNote } from "../cmps/add-note-txt.jsx";
 import { NoteList } from "../cmps/note-list.jsx";
 import { noteService } from '../services/note.service.js';
+import { AddNoteDynamic } from "../cmps/add-note-dynamic.jsx";
+import { AddNoteImg } from "../cmps/add-note-img.jsx";
+import { AddNoteList } from "../cmps/add-note-list.jsx";
+import { AddNoteTxt } from "../cmps/add-note-txt.jsx";
+
+const Router = ReactRouterDOM.HashRouter
+const { Route, Switch } = ReactRouterDOM
 
 export class NoteIndex extends React.Component {
 
     state = {
-        notes: []
+        notes: [],
+        noteType: "note-txt",
     }
 
     componentDidMount() {
@@ -26,7 +34,7 @@ export class NoteIndex extends React.Component {
                     })
                 break;
             case "note-todos":
-                noteService.update(note, ev.target.innerText , ev.target.accessKey)
+                noteService.update(note, ev.target.innerText, ev.target.accessKey)
                     .then(() => {
                         this.setState(this.loadNotes)
                     })
@@ -36,6 +44,7 @@ export class NoteIndex extends React.Component {
     }
 
     onRemoveNote = (noteId) => {
+        console.log('remove');
         noteService.remove(noteId)
             .then(() => {
                 this.setState(this.loadNotes)
@@ -51,11 +60,12 @@ export class NoteIndex extends React.Component {
     }
 
     render() {
-        const { notes } = this.state
+        const { notes, noteType } = this.state
         const { onRemoveNote, onAddNote, onEditNote } = this
+        const { noteTxtOpen, noteImgOpen, noteTodosOpen } = this.state
         return (
             <main className="note-app main-layout flex column align-center">
-                <AddNote onEditNote={onEditNote} onAddNote={onAddNote} />
+                <AddNoteTxt onAddNote={onAddNote} onRemoveNote={onRemoveNote} />
                 <NoteList notes={notes} onRemoveNote={onRemoveNote} onEditNote={onEditNote} />
             </main>
         )

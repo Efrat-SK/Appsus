@@ -1,11 +1,11 @@
 import { utilService } from "../../../services/util.service.js"
 
-export class AddNote extends React.Component {
+export class AddNoteImg extends React.Component {
 
     state = {
         note: {
             id: utilService.makeId(),
-            type: 'note-txt',
+            type: 'note-img',
             info: '',
         }
 
@@ -37,7 +37,7 @@ export class AddNote extends React.Component {
                 < form onSubmit={this.addNote} >
                     <input type="text" name="info"
                         value={info} id="info"
-                        placeholder="Add your new note" autoComplete="off"
+                        placeholder="Add an URL" autoComplete="off"
                         onChange={handleChange}
                     />
                 </form >

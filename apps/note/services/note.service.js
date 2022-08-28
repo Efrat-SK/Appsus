@@ -15,17 +15,12 @@ const gNotes = [
     {
         id: utilService.makeId(),
         type: "note-txt",
-        info: "Fullstack Me Baby!"
+        info: "Go to the gym!!!"
     },
     {
         id: utilService.makeId(),
         type: "note-txt",
-        info: "Hello note"
-    },
-    {
-        id: utilService.makeId(),
-        type: "note-txt",
-        info: "Notes are my favorite"
+        info: "8:30 react lesson"
     },
     {
         id: utilService.makeId(),
@@ -36,10 +31,17 @@ const gNotes = [
         id: utilService.makeId(),
         type: "note-todos",
         info: [
-            { txt: "Driving liscence", txtId: utilService.makeId() },
-            { txt: "Coding power", txtId: utilService.makeId() },
+            { txt: "bananas", txtId: utilService.makeId() },
+            { txt: "bred", txtId: utilService.makeId() },
+            { txt: "milk", txtId: utilService.makeId() },
+            { txt: "fruits", txtId: utilService.makeId() },
         ]
-    }
+    },
+    {
+        id: utilService.makeId(),
+        type: "note-txt",
+        info: "Find babysitter for tomorrow"
+    },
 ]
 
 function query() {
