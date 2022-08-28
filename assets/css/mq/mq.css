@@ -11,7 +11,7 @@
         min-width: 100vw;
         transition: transform .6s, box-shadow .6s;
         transform: translateX(100%);
-        background-color: whitesmoke;
+        background-color: var(--color1);
         z-index: 30;
     }
 
@@ -127,6 +127,16 @@
     .note-preview {
         width: 80vw;
     }
+
+    .note-add {
+        flex-direction: column;
+        align-content: center;
+        justify-items: center;
+        width: 75vw;
+        height: 80px;
+        padding-top: 10px;
+        padding-bottom: 0px;
+    }
 }
 
 /* SMALL - Mobile */
@@ -229,6 +239,13 @@
 
     .note-preview {
         width: 210px;
+    }
+
+    .note-add {
+        height: 45px;
+        width: 50vw;
+        padding: 5px;
+
     }
 }
 

@@ -36,8 +36,8 @@ const gNotes = [
         id: utilService.makeId(),
         type: "note-todos",
         info: [
-            "Driving liscence",
-            "Coding power"
+            { txt: "Driving liscence", txtId: utilService.makeId() },
+            { txt: "Coding power", txtId: utilService.makeId() },
         ]
     }
 ]
@@ -66,12 +66,19 @@ function save(newNote) {
     return Promise.resolve(newNote)
 }
 
-function update(noteToUpdate, newInput) {
-    let updatedNote = _updateNote(noteToUpdate, newInput)
+function update(noteToUpdate, newInput, txtId) {
+    let updatedNote
+    if (!txtId) {
+        updatedNote = _updateTxtNote(noteToUpdate, newInput)
+    }
+    else {
+        updatedNote = _updateListNote(noteToUpdate, newInput, txtId)
+    }
     let notes = _loadFromStorage()
     notes = notes.map(note => note.id === noteToUpdate.id ? updatedNote : note)
     _saveToStorage(notes)
     return Promise.resolve(updatedNote)
+
 }
 
 function remove(noteId) {
@@ -81,7 +88,17 @@ function remove(noteId) {
     return Promise.resolve()
 }
 
-function _updateNote(note, newInfo) {
+function _updateTxtNote(note, newInfo) {
+    return {
+        id: note.id,
+        type: note.type,
+        info: newInfo
+    }
+}
+
+function _updateListNote(note, newtxt, txtId) {
+    const newInfo = note.info.map((txt) => 
+    txt.txtId === txtId ? {txt: newtxt , txtId: txt.txtId} : {txt: txt.txt , txtId: txt.txtId})
     return {
         id: note.id,
         type: note.type,

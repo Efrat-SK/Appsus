@@ -34,7 +34,7 @@ export class AppHeader extends React.Component {
                     <span className="separate-line">_____</span>
                     <NavLink exact to="/" onClick={this.closeMenu}>Home</NavLink>
                 </nav>
-                <button className="toggle-menu" onClick={this.openMenu}>☰</button>
+                <div className="toggle-menu" onClick={this.openMenu}>☰</div>
             </div>
         </header>
     }

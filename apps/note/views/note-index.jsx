@@ -13,29 +13,20 @@ export class NoteIndex extends React.Component {
     }
 
     loadNotes = () => {
-        { console.log('load notes') }
         noteService.query()
             .then(notes => this.setState({ notes }))
     }
 
     onEditNote = (ev, note) => {
-        console.log(ev)
-        console.log(note.info)
-        console.log(note.type)
-        let updatedNote
         switch (note.type) {
             case "note-txt":
-                updatedNote = { ...note, txt: ev.target.innerText }
-                console.log('updatedNote', updatedNote)
                 noteService.update(note, ev.target.innerText)
                     .then(() => {
                         this.setState(this.loadNotes)
                     })
                 break;
             case "note-todos":
-                updatedNote = { ...note, txt: ev.target.innerText }
-                console.log('updatedNote', updatedNote)
-                noteService.update(note, ev.target.innerText)
+                noteService.update(note, ev.target.innerText , ev.target.accessKey)
                     .then(() => {
                         this.setState(this.loadNotes)
                     })

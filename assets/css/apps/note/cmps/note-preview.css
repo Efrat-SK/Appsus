@@ -2,3 +2,9 @@
     /* min-height: 50px; */
     /* flex-grow: 3; */
 /* } */ 
+
+article h1{
+    outline: 0px solid transparent;
+    font-size: large;
+    font-weight: 400;
+}

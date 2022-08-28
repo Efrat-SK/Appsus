@@ -29,7 +29,6 @@ export class AddNote extends React.Component {
     }
 
     render() {
-        console.log('renders')
         const { info } = this.state.note
         const { handleChange } = this
         return <section>

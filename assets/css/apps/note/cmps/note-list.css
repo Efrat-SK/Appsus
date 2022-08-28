@@ -1,6 +1,6 @@
 .note-preview {
     break-inside: avoid;
-    padding: 17px;
+    /* padding: 17px; */
     margin-bottom: 7px;
 
     align-items: flex-start;
@@ -15,6 +15,11 @@
     font-size: large;
 }
 
+.note-info > h1{
+    padding-top: 17px;
+    padding-inline-start: 17px;
+}
+
 .note-info {
     min-height: 30px;
 }
@@ -24,13 +29,12 @@
 }
 
 .note-list {
-    /* height: 50vh; */
     gap: 10px;
     column-fill: balance;
 }
 
 .devTools {
-    margin-top: 10px;
+    margin: 10px;
     align-self: flex-end;
     height: 30px;
 }
@@ -39,7 +43,12 @@
     margin-left: 8px;
 }
 
-.devTools>button {
+.devTools *>button {
+    display: none;
+    width: 30px;
+    height: 30px;
+}
+.devTools >button {
     display: none;
     width: 30px;
     height: 30px;
